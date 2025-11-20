@@ -1,0 +1,451 @@
+Day2:-
+------- 
+  syntax:-
+  -------- 
+    to create the object. 
+   Classname objectname = new classname();
+new--> allocate the memory.
+
+
+Constructor:-
+--------------
+  ->It is the formal way to inililize the objects.
+  Rules of Constructor:-
+  ------------------------ 
+     1. classname should be same as constructor.
+     2. It is a like a method but no return type.
+     3. It is called automatically when you create the object.
+     
+types of constructor:-
+------------------------- 
+    1. default.      ---------> no arguments 
+    2. parameterised.  --------> It will have some arguments
+
+Note:-
+------- 
+  By default, when ever we compile, the compiler add a default 
+constructor to the class if not constructor is available.
+
+
+====================================================================
+this keyword:-
+----------------- 
+   this is a keyword in java, which is used to refer the current object.
+       (or)
+    It is used to refer the global variable.
+
+==================================================================
+Task1:-
+---------- 
+   1. create a Car class,
+      with the attribute, 
+           modelno, speed, 
+      
+      with the Methods, 
+          accelerate(),   ---> increase the speed by 5
+          brake(),        ----> decrease the speed by 5
+          getSpeed();     ----> show the current speed of the car
+
+     initialize the values using constructor, initial value 
+      of speed should be zero. 
+
+   2. create a class CarApp 
+          which has main method 
+            create the object of car, and   
+                 
+
+=======================================================================
+features of java:-
+------------------- 
+ 1.simple  (no pointers)
+ 2.platform independent 
+ 3.architecture neutral (It does not force the developer to have hardware/software requirement)
+ 4.Portable => platform independent + Architectural Neutral 
+ 5.oops 
+ 6.secure 
+ 7.robust -->automatic garbage collection,  and good exception handling, 
+             A language is said to robust , if it has good memory mgmt, 
+             and good exception handling.
+ 8.Dynmaic ->we can create dynamic web applications. 
+ 9.multithreaded -> 
+ 10.high performance. 
+
+========================================================================
+when the memory allocation happens..?
+--------------------------------------- 
+    at run time 
+      --> after calling main method 
+            ---> It will start allocating the memory of object. 
+               ---> objects are store in Heap memory.
+    
+Note:-
+------ 
+   entry point --> main method --> after that it will start allocation of memory
+
+
+static keyword:-
+----------------- 
+    ->It is mainly used to manage the memory, 
+    -> The Memory allocation for static will happen , during the class 
+loading time(.class), before the main method calls.
+
+    -> Static Belong to class reference.(It can be called using class 
+name). 
+
+   when to declare the variable as static..? 
+   ---------------------------------------------
+     when we want to share common values to all the objects then, we can
+declare the variable as static.
+      
+===================================================================
+Access Modifier:-
+------------------
+            with in the  with in the            outside the  Any package
+            class        package(same package)  package by   (any where in
+                                                sub class    the project).
+
+private      y
+
+default      y               y
+
+
+protected    y               y                     y
+
+public       y               y                      y              y
+
+========================================================================
+Encapsulation:-
+------------------
+    Encapsulation = Data hiding + security. 
+
+  How to Achieve Data Hiding..? 
+  ------------------------------ 
+     Declaring all the variable as private, and can be accessed 
+using public setter and getter methods.
+     
+     private int a; 
+       sop(a); // not direct access outside the class
+      
+     sop(obj.getA()); // can be access using getter and setter. 
+
+    
+   
+===================================================================
+Inheritance:-
+--------------  
+     ->Inheritance is nothing IS-A relationship.
+    
+        Employee is a Person 
+        Manager is a Person 
+        Security is a Person
+
+        SavingAccount is a Account 
+        CurrentAccount is a Account
+        (child/sub class)   (parent/super class)
+
+ ->  the child class,inherit the parent class property.
+ ->  extends keywords , makes the relationship.
+ ->  The Child class by default, Implicitly call the parent class 
+default constructor. 
+ 
+ -> For Parameterised constructor the Child class explicitly has to call 
+the parent constructor using super.
+
+
+Super Keyword:-
+----------------  
+  Super is a keyword in java, which is used to refer the immediate 
+parent class property.
+      -> Super is applicable in 3 places. 
+          1. variable 
+          2. methods 
+          3. constructor.
+
+Types of inheritance:-
+----------------------- 
+      1. single 
+      2. multilevel 
+      3. Hierarchial
+      
+      4. multiple  (It is not supported using class level, It can be
+                    achieve using interface).
+      5. Hybride
+
+==================================================================
+class Parent1
+{
+    showFatherName()
+    {
+       "anil"
+    }
+}
+
+class Parent2
+{
+    showFatherName()
+    {
+       "suraj"
+    }
+
+}
+
+class Child extends Parent1,Parent2 
+{
+    // It is not supported , It creates a ambiguity.
+}
+===============================================================
+Note:-
+------- 
+    Root class of all the java class,...Object class. 
+    By Default all the java class implicitly extends Object class. 
+      (or)
+    Object class is the super class for all the class. 
+
+  Some of the methods of Objects:- 
+  ---------------------------------
+     toString()
+     hashCode()
+=================================================================
+Polymorphism:-
+---------------- 
+     one name many forms. 
+    2 types 
+    -------- 
+     1. Compile Time  (Overloading)
+     2. Run Time     (Overriding). 
+
+Overloading              vs         Overridng 
+-------------------             -----------------
+A class can have   
+method name , with 
+different argument.
+
+Overriding:-
+--------------- 
+  -> Overriding comes under IS-A relationship.
+  -> if subclass does not satisfy with the parent class implementation 
+then sub class can give his own implementation.
+
+
+Child child = new Child();// It has both parent and child property.
+
+upcasting:-
+-------------- 
+   Reference of Parent of Object of Child. 
+  Parent parent = new Child();
+====================================================================
+methods:-
+----------- 
+   in java we have 2 types of methods. 
+    1. normal/ concerete method 
+    2. abstract method 
+
+  normal method:-
+  -------------- 
+    It will have body and implementation details.  
+     void display()                  
+     {              -------> // body
+       sop("hello");    // implementation  (no hiding)
+     }
+
+
+   abstract method:-   
+   ----------------
+      ->It does not have body and no implementation details.
+      ->It starts with abstract keyword.
+
+      abstract void display();    // hiding
+   
+
+classes:-
+------------- 
+      3 types. 
+
+1. normal class
+2. abstract class 
+3. interface
+
+
+normal class             abstract class               interface 
+--------------           ---------------              ------------
+  normal method         abstract + normal method    only abstract method(jdk 1.7)
+  (no hiding)            (partially hiding)            (fully hiding) 
+  [0% hiding]            [0 to 100 % hiding]           [100% hiding]   
+   
+  complete                incomplete                    incomplete 
+  (we can create object)  we cannot create object      we cannot create object
+
+
+Note:-
+-------- 
+   since abstract method do not have body.. 
+   how to provide a body to abstract method....? 
+  ans) By using overriding, we can provide the body to abstract method.
+
+
+==============================================================================
+Q) when to declare the method as abstract..?
+ ans)  we have a method requirement , but dont know the implementation, the implementation will be given by sub class.
+
+Note:-
+------- 
+   --> we cannot create the object for abstract class, 
+   --> abstract class can have constructor, and it can be called using 
+super in child class. 
+=================================================================================
+
+final keyword:-
+---------------- 
+   -> final is a keyword in java, 
+   -> It is applicable in 3 places, 
+         1.variable --> the value cannot be modified,
+         2.methods  --> we cannot override
+         3.class    ---> we cannot extends 
+
+
+===========================================================================
+interface:-
+------------ 
+   -->it has only abstract method till  jdk 1.7
+   --> By using interface , we can achieve multiple inheritance.
+   
+properties of Interface:-
+--------------------------- 
+    1. variable: 
+           in interface by default all the variable are public static final
+
+    2. methods:- 
+            in interface by default all the methods are public and abstract. 
+
+=============================================================================
+class --- class        => extends 
+interface -- interface => extends 
+interface  -- class    => implements 
+class     -- interface  ==> (not possible)
+==============================================================================
+ Exception Handling:-
+---------------------
+   Exception is an event which will disturb the normal flow of the application.
+
+ compiler:-
+ ---------- 
+    throws error or exception 
+
+ error    vs     exception 
+----------       ---------------
+syntax error       logical error  
+(missing of       (divide by zero,  
+ ; , } )           null --> we cannot find the lenghth of length, 
+                   arrayIndexOutOfBound,  
+
+
+error we cannot   exception we can handle.
+handle  
+
+How to handle it...?
+------------------------ 
+  To handle exceptions, Java provides , some keywords and some 
+predefined classes. 
+     keywords:- 
+     ---------- 
+     try, catch, finally, throw, throws, 
+
+     classes:- 
+     ---------
+                    object 
+                      | 
+                     Throwable 
+          |                               | 
+      Error                           Exception 
+                                 |                   | 
+                           checked                unchecked 
+                          (compile time)           (run time) 
+
+                          IOException            ArithmeticException
+                          FileNotClassFound      ArrayIndexOutOfBound
+                                                 NullPointerException
+
+compile time:-
+-----------------
+ (It will come very first time , when we compile the code) 
+
+RunTime time:-
+----------------- 
+  The program successfully compiled, during run time it will come.
+                          
+
+                        
+=========================================================================
+handle exception using try and catch block:-
+----------------------------------------------- 
+  try 
+  {
+    // critical code(the code which might get an exception)
+  }
+  catch(Exception e)
+  {
+    //  It will handle the exception, throw by try block.
+  }
+
+ Note:-
+ ------ 
+   the catch block will be called only , if try block throws the exception.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+
+
+
+
+
+     
+    
+
+
+
+
+
+
