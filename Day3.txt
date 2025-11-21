@@ -1,0 +1,394 @@
+Day3:-
+------ 
+  Exception handling continue:-
+  ------------------------------  
+
+To handle exception:-
+----------------------- 
+  keyword --> try,catch,finally,throw, throws
+  classes --> refer class hiererachy diagram
+   
+syntax for try:-
+---------------- 
+  try--catch 
+  try--catch1,catch2,...catchn  
+  try--finally 
+
+
+
+multiple catch block rules:-
+-----------------------------  
+   parent class should be defined at the last. 
+
+===================================================================
+
+throw and throws:-
+-------------------- 
+   throw --> It is used to throw the exception. 
+             It is declared inside the method body.
+   
+   throws --> It is used to declare the exception. 
+              It is declared outside the method body.
+           eg:-
+           ---- 
+               if we call withdraw function ---> It throws Insuffieient fund
+
+
+
+====================================================================
+checked                        vs        unchecked 
+--------------------------------------------------------------------------- 
+->compile time                               -> run time 
+
+->The very first time,                 The program compiled successfully, 
+when we compile the program            during run time , the exception will come.
+the exception will come.
+
+
+=========================================================================
+custome exceptions:-
+---------------------- 
+  ->we create a our own custome exception, based on the business requirement. 
+      eg:-
+      ----- 
+              IdNotFoundException.
+              InSufficientFundException.
+
+  class InValidAgeException extends Exception  // checked exception (compile-time)
+  {
+  }
+  
+
+  class InValidAgeException extends RunTimeException  //un-checked exception (Runtime)
+  {
+  }
+
+
+=====================================================================================
+Task:-
+-------- 
+      -> create a Employee with two variable 
+              firstName, lastName,   // inililize the values using constructor
+         
+           validate() 
+          { 
+             // It will validate the firstName and lastName, 
+             // if firstName and lastName, cannot be null, if it is null 
+                throw inbuilt nullpointerException 
+            // if firstName and lastName length should be more than 3, else 
+                throw a Custome exception called InValidName length Exception. 
+            
+            // if above condition is satisfied, then display firstname and lastname.
+          }  
+    
+          
+          create a EmployeeApp class with main method to test the application 
+
+=================================================================================
+Root Class for all the java class:-
+------------------------------------- 
+   Object class---> 
+
+  implicity all the java class, extends Object class. [ cosmic super class]
+
+   methods:- 
+   ---------- 
+        toString() 
+        hashCode()
+        equals()
+===================================================================================
+String:-
+--------- 
+    To Store character data, java has inbuilt data type char. 
+    char ch='a'; 
+    char ch=98;
+
+   To Store collection characters , java provides 3 inbuilt classes,
+      1. String.
+      2. StringBuffere.
+      3. StringBuilder.
+
+
+      String                      StringBuffer              StringBuilder 
+    -----------------            ----------------------     ------------------ 
+     immutable                      mutable                   mutable 
+    (we cannot change)             ( we can change)           (we can check) 
+          
+                                      synchronised             not-synchronised 
+                                      [thread-safe]             [not a thread safe] 
+
+                  
+
+     
+
+  Employee emp = new Employee();
+   -->emp is the object of Employee 
+
+  String emp = "anil";
+     anil is the object of String
+
+
+->String is nothing but collection character, (array of character). 
+-> two ways to create the string. 
+      1. by literal 
+      2. new keyword  
+
+    
+literal:-
+-------------- 
+    String s1="hello"; 
+
+new keyword:-
+---------------- 
+     String s1 = new String("hello");
+
+
+In Java, Object are Stored in heap memory:-
+---------------------------------------------
+==========================================================================
+== >  it will check the address 
+equals ==> value 
+========================================================================== 
+-> count of vowels, 
+-> remove duplicate character from a string.
+=========================================================================
+Wrapper class:-
+------------------ 
+       Java is Object oriented Programming or not...? 
+       --------------------------------------------- 
+       yes 
+     
+       int a = 10; // a is a primitive type.  
+        
+      ->primitive data type are not objects. 
+      -> if we want primitive data type in object form, then we have respective 
+Wrapper class for all the primitive data type.
+
+             primitive              Wrapper class 
+            -------------         ------------------ 
+                int                   Integer 
+                byte                  Byte 
+                short                 Short 
+                .....
+
+  eg:-
+  ----
+
+========================================================================
+Collection Framework:-
+-------------------------
+   Framework:- 
+   --------- 
+    -> half built solutions.
+    -> library classes, methods and interface are available to the developer.
+    -> collection library is present inside => java.util package
+    -> inside java.util package, It provides predefined interface and classes
+to work with the collection.
+
+    why we need collection..?
+   ---------------------------- 
+    -> Collection is nothing group of heterogeneous objects, where we can perform 
+insert, update , delete , and reterive the objects in an effective manner. 
+   -> In Collection the size is dynamic by nature.
+   -> In Collection it will store object type.   
+          int         Integer 
+         (primitive)  (Wrapper class)
+
+   
+    difference between  array vs  collection 
+  ------------------------------------------------ 
+    Array                          vs                   Collection 
+  -------------------------                      ------------------------------- 
+1. homogeneous                                 heterogeneous 
+2. fixed size                                  dynamic size 
+3. no inbuilt data structure                   It has inbuilt data strcture
+   is available                                (list, set , queue, ArrayList,..)
+    
+
+4. Performance point of view 
+array is good 
+
+5.                                             Memory point of view collection is 
+                                               good. 
+
+
+Note:-
+-------- 
+   In Collection It stores only Object type. not the primitive.
+
+================================================================================= 
+Note:-
+---------- 
+     Object --> root class for all the java class 
+     Throwable /Excetption --> root class for all the Exception 
+     Collection  ---> root interface for all the collection. 
+
+=============================================================================   
+
+  Collection(I):-
+  ----------------- 
+      It is the root interface for all the collections, It has somes methods 
+  add(),remove(),contains(),.......
+
+    Sub interface of Collection:-
+    ------------------------------ 
+     list 
+     set 
+     map 
+     queue 
+
+
+Properties:-
+-----------------
+   List:-
+   ------ 
+      -> It allows duplicate. 
+      -> It maintains insertion order.
+
+    Set:-
+    ----- 
+      -> It does not allow duplicate. 
+      -> Order is not preserved by Set, It will be deceided by Sub class.
+     
+    Map:-
+    ----- 
+      -> In Map , the elements are stored in key value pair.
+      -> keys will always be unique, but value can be duplicate.
+      ->It does not extends collection, But it one type of Collection.
+      
+    Queue:-
+    ------ 
+        -> FIFO 
+
+============================================================================
+Implementation Classes of List:-
+------------------------------------
+  ArrayList:-
+  ------------
+     -> It implements list (allow duplicate, insertion order) 
+     -> It uses dynamic array to store the element.  (At runtime, the size will grow)
+     
+      Dynamic Array Explanantion:-
+      ------------------------------
+     -> ArrayList<Integer> nums = new ArrayList<Integer>(); 
+      
+         // default capacity  --> 10 
+       nums.add(1); 
+       nums.add(40); 
+       ....... (10 elements) 
+      nums.add(35);  
+
+             index --> 10    
+
+          It will create new capacity, 
+            new capacity = (old capacity * 3/2) + 1 
+                         = 16 
+
+               index -> 16   (It will copy the elements from old array to new array).
+      
+ 
+disadv:-
+--------- 
+   --> insertion is not good in array list. 
+
+adv:-
+------ 
+   -> reterival is good in array list.  (index access).
+         
+
+
+
+
+Generic Collection:-
+----------------------- 
+    Type Safety,
+
+
+
+  
+
+
+         
+
+
+
+
+
+    
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+   
+
+
+
+
+
+    
+
+
+
+     
+
+
+ 
+
+   
+
