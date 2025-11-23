@@ -1,10 +1,6 @@
 # 📘 **Complete Guide to List in Java — By *Safan Codes***
 
 ### 👤 **Author:** Safan Codes
-
-🔗 **LinkedIn:** [https://www.linkedin.com/in/safan-ahmed-515188251/](https://www.linkedin.com/in/safan-ahmed-515188251/)
-▶️ **YouTube:** [https://www.youtube.com/@safanahmed9380](https://www.youtube.com/@safanahmed9380)
-
 ---
 
 # 📚 **TABLE OF CONTENTS**
@@ -373,19 +369,7 @@ public class Client {
     }
 }
 ```
-Below is your **regenerated `.md` file section** with:
 
-✔ Better class names
-✔ Each program has **Description → Sample Code → Expected Output**
-✔ Real-life examples
-✔ More meaningful logic
-✔ Vectors explained as “same as ArrayList + synchronized”
-✔ Stack, Vector examples are practical (Undo system, Browser history, Notification system, etc.)
-✔ Still simple but valuable for students
-
-You can paste this directly under your main file.
-
----
 
 # 🧪 **Sample Programs on List (ArrayList, LinkedList, Vector, Stack)**
 
