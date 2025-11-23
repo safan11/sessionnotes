@@ -935,8 +935,6 @@ Stack is a subclass of Vector and works on **LIFO (Last In First Out)**.
 
 ## 🔗 Connect With Me
 
-🌐 **Channel Name:** Safan Codes  
-
 📺 **YouTube:**  
 👉 https://www.youtube.com/@safanahmed9380  
 
