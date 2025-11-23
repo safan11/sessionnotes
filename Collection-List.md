@@ -1,8 +1,5 @@
 # 📘 **Complete Guide to List in Java — By *Safan Codes***
-
-### 👤 **Author:** Safan Codes
 ---
-
 # 📚 **TABLE OF CONTENTS**
 
 1. 📜 Introduction to List
