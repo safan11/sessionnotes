@@ -1,0 +1,211 @@
+Day4
+------
+Collection Framework:-  (continue from Day 3)
+----------------------- 
+Type Safety Collection.
+  ArrayList<String> names= new ArrayList<String>();
+  ArrayList<Employee> employee = new ArrayList<Employee>();
+
+bulk operations:-
+------------------ 
+     addALL(),   ---> collection of object we can add, 
+     removeAll(),  --> set of object we can remove,
+     retainAll(),   --> 
+
+
+=============================================================
+Iterate the Collection:-
+-------------------------- 
+      -> Iterator     (old way)
+      -> ListIterator  (old way)
+      -> for Each loop  
+
+Iterator:-
+----------- 
+    -> It is a Interface, It has 2 methods , 
+          -> hasNext() 
+          -> next(), 
+   
+   -> It is like a pointer, It can iterate the elements in forward direction.
+
+
+ListIterator:-
+--------------- 
+      -> It is a interface, It has four methods, 
+            -> hasNext(), 
+            ->  next(), 
+            -> hasPrevious(), 
+            ->  previous(),
+       
+    -> It can iterate both forward and backward direction.
+
+
+forEach loop:-
+----------------
+
+=============================================================================
+Collection       vs               Collections 
+-----------                       -------------- 
+It is the root interface          It is a Utility class, 
+for all the collection,           which provides some static methods
+                                  that work on the returned collections.
+
+It has some methods, like         sort(), reverseOrder(),...
+add(), remove(),....
+
+
+
+
+
+===============================================================================
+
+Task:-
+------ 
+   --> you have two bags, 
+      bag1 -->   water, chips, sweet,mango, 
+      bag2 -->   water, apple, banana, candy,chips, 
+
+
+  ==> make it into one bags, remove duplicate, and sort in ascending order, 
+      and count number of items in the bag.   
+
+==========================================================================
+model, service, client 
+--------------------------------------- 
+model -->Employee, Product, Customer, 
+         
+        It has private variable,setter getter, constructors, toString. 
+
+
+Service  --> EmployeeService  , ProductService,.... 
+         
+         It is used for writing business logic. 
+           addEmployee(), 
+          viewAllEmployee(), 
+           .....
+
+Client -->  
+            where it has main methods, 
+               and call the service method.
+            
+============================================================================
+List:-  (1.2)
+------ 
+  implementation classes:
+  ------------------------ 
+    ArrayList  (1.2)
+    LinkedList (1.2)
+    Vector (1.0)
+    Stack (1.0)
+
+
+LinkedList:-
+-------------- 
+    -> It implements list(allow duplicate, insertion order)
+    -> It uses data structure double linkedlist to store the element.
+    
+adv:-
+----- 
+   good for insertion. 
+dis:-
+----- 
+  not good for reterival (all the nodes are connected, always start from first index)
+
+
+====================================================================================
+
+Vector:-
+--------- 
+   It is same as ArrayList, but Vector is Synchronised, where as arraylist 
+is not synchronised.
+
+==================================================================================
+Stack:-
+-------- 
+     LIFO 
+  
+=================================================================================
+Set:-
+------ 
+    ->It will not allow duplicate.  
+    -> Order is Decided by Sub class. 
+
+
+
+	        // it will remove duplicate
+		HashSet<Integer> names = new HashSet<Integer>();
+		names.add("ankit".hashCode());
+		names.add("ankit".hashCode());
+		System.out.println(names);
+		
+                  //it will remove duplicate
+		HashSet<String> names2 = new HashSet<String>();
+		names2.add("ankit");
+		names2.add("ankit");
+		System.out.println(names2);
+		
+		// to remove duplicate we have to override has code method in employee class
+		HashSet<Employee> employees = new HashSet<Employee>();
+		employees.add(new Employee(1, "anil", 31, "hr"));
+		employees.add(new Employee(1, "anil", 31, "hr"));
+		employees.add(new Employee(2, "suraj", 28, "hr"));     
+ 
+
+Note:-
+-------
+  -> By default, all the wrapper class and String class implements hashcode methods,
+so it removes duplicate.
+
+  -> When ever we Store custome objects like, Employee,Student,Product,.. then we 
+have override hashCode method.
+
+
+================================================================================
+Map:
+------- 
+   In Map, we can store the elements in key value pair, keys will be unique, and 
+values can be duplicate.
+  
+   ->Map is one type Collecton, but it directly does not extends the Collection 
+interface.  (so add() will not work, we have to use put()) 
+   
+
+   -> Map Implementation classes, 
+          HashMap           ----> own order
+          LinkedHashMap     --->  insertion order
+          TreeMap            ---> sorted order. 
+   
+   -> Note:-
+      ----- 
+          the orders are based on key.
+           internally use hashTable to store the elments.
+============================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
