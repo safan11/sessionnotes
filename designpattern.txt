@@ -1,0 +1,275 @@
+=============================
+DESIGN PATTERNS -
+=============================
+
+What Are Design Patterns?
+-------------------------
+Design patterns are reusable solutions to common software design problems.
+They improve:
+- Code structure
+- Reusability
+- Maintainability
+- Flexibility
+
+Three major types:
+1. Creational
+2. Structural
+3. Behavioral
+
+-------------------------
+1) CREATIONAL DESIGN PATTERNS
+-------------------------
+Purpose: Control object creation in a structured way.
+
+Examples: Factory, Abstract Factory, Singleton, Builder, Prototype, Object Pool.
+
+--- Singleton Pattern ---
+Purpose:
+Ensures only one instance exists throughout the application.
+
+Use Cases:
+- Logging
+- Configuration
+- Database connection
+
+Code:
+class AppConfig {
+    private static AppConfig instance;
+
+    private AppConfig() {}
+
+    public static AppConfig getInstance() {
+        if (instance == null) {
+            instance = new AppConfig();
+        }
+        return instance;
+    }
+}
+
+Usage:
+public class Main {
+    public static void main(String[] args) {
+        AppConfig c1 = AppConfig.getInstance();
+        AppConfig c2 = AppConfig.getInstance();
+
+        System.out.println(c1 == c2);
+    }
+}
+
+Output:
+true
+
+Why use it?
+- Avoids multiple unnecessary object creation.
+- Ensures consistent access to shared resources.
+
+--- Factory Pattern ---
+Purpose:
+Creates objects without exposing the creation logic.
+
+Code:
+interface Shape { void draw(); }
+
+class Circle implements Shape {
+    public void draw() { System.out.println("Circle"); }
+}
+
+class ShapeFactory {
+    public Shape getShape(String type) {
+        if (type.equalsIgnoreCase("circle")) return new Circle();
+        return null;
+    }
+}
+
+Usage:
+public class Main {
+    public static void main(String[] args) {
+        ShapeFactory factory = new ShapeFactory();
+        Shape shape = factory.getShape("circle");
+        shape.draw();
+    }
+}
+
+Output:
+Circle
+
+Why use it?
+- Makes system flexible.
+- Supports adding new product types without changing client code.
+
+-------------------------
+2) STRUCTURAL DESIGN PATTERNS
+-------------------------
+Purpose: Combine classes and objects in larger, flexible structures.
+
+Examples: Adapter, Decorator, Proxy, Facade, Composite, Bridge
+
+--- Adapter Pattern ---
+Purpose:
+Allows incompatible interfaces to work together.
+
+Code:
+class OldCharger {
+    void chargeOld() { System.out.println("Using old charger"); }
+}
+
+interface NewCharger { void chargeNew(); }
+
+class Adapter implements NewCharger {
+    OldCharger oldCharger;
+
+    Adapter(OldCharger charger) { this.oldCharger = charger; }
+
+    public void chargeNew() { oldCharger.chargeOld(); }
+}
+
+Usage:
+public class Main {
+    public static void main(String[] args) {
+        NewCharger charger = new Adapter(new OldCharger());
+        charger.chargeNew();
+    }
+}
+
+Output:
+Using old charger
+
+Why use it?
+- Reuse old code without modification.
+- Make incompatible components compatible.
+
+--- Decorator Pattern ---
+Purpose:
+Add features dynamically without modifying the original class.
+
+Code:
+interface Coffee {
+    String getDescription();
+    double cost();
+}
+
+class BasicCoffee implements Coffee {
+    public String getDescription() { return "Basic Coffee"; }
+    public double cost() { return 50; }
+}
+
+class MilkDecorator implements Coffee {
+    Coffee coffee;
+
+    MilkDecorator(Coffee coffee) { this.coffee = coffee; }
+
+    public String getDescription() { return coffee.getDescription() + " + Milk"; }
+    public double cost() { return coffee.cost() + 20; }
+}
+
+Usage:
+public class Main {
+    public static void main(String[] args) {
+        Coffee order = new MilkDecorator(new BasicCoffee());
+        System.out.println(order.getDescription());
+        System.out.println(order.cost());
+    }
+}
+
+Output:
+Basic Coffee + Milk
+70.0
+
+Why use it?
+- Extend behavior dynamically.
+- Avoid subclass explosion.
+
+-------------------------
+3) BEHAVIORAL DESIGN PATTERNS
+-------------------------
+Purpose: Manage communication and responsibility between objects.
+
+Examples: Strategy, Observer, Iterator, Command, Template
+
+--- Strategy Pattern ---
+Purpose:
+Select different behaviors at runtime.
+
+Code:
+interface Payment { void pay(int amount); }
+
+class UPI implements Payment {
+    public void pay(int amount) {
+        System.out.println("Paid using UPI: " + amount);
+    }
+}
+
+class Card implements Payment {
+    public void pay(int amount) {
+        System.out.println("Paid using Card: " + amount);
+    }
+}
+
+class Cart {
+    void checkout(Payment payment, int amount) {
+        payment.pay(amount);
+    }
+}
+
+Usage:
+public class Main {
+    public static void main(String[] args) {
+        Cart cart = new Cart();
+        cart.checkout(new UPI(), 500);
+    }
+}
+
+Output:
+Paid using UPI: 500
+
+Why use it?
+- Switch behavior without changing code.
+- Avoid multiple if-else statements.
+
+--- Observer Pattern ---
+Purpose:
+Notify multiple objects automatically when the subject changes.
+
+Code:
+interface Observer { void update(String msg); }
+
+class User implements Observer {
+    String name;
+
+    User(String name) { this.name = name; }
+
+    public void update(String msg) {
+        System.out.println(name + " received: " + msg);
+    }
+}
+
+class NotificationService {
+    List<Observer> observers = new ArrayList<>();
+
+    void subscribe(Observer o) { observers.add(o); }
+
+    void notifyUsers(String msg) {
+        for(Observer o : observers) o.update(msg);
+    }
+}
+
+Usage:
+public class Main {
+    public static void main(String[] args) {
+        NotificationService service = new NotificationService();
+        service.subscribe(new User("Alice"));
+        service.subscribe(new User("Bob"));
+        service.notifyUsers("New update available!");
+    }
+}
+
+Output:
+Alice received: New update available!
+Bob received: New update available!
+
+Why use it?
+- Automatic notification.
+- Reduces manual communication.
+- Keeps objects loosely coupled.
+
+

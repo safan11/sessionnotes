@@ -298,7 +298,6 @@ adv:-
 
 
 
-
 Generic Collection:-
 ----------------------- 
     Type Safety,

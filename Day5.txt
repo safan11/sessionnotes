@@ -1,0 +1,148 @@
+Day5:-
+-------- 
+  --> enums, has-a, jdbc, multithreading,... 
+  --> 5 to 6 coding assignment.
+
+==============================================================
+Enum:-
+-------- 
+  ->To have constant values, 
+  ->It will have fixed set of values, 
+     eg:-
+     --- 
+       days-> Monday,tuesday,wed,.... 
+       status --> booked,available,cancelled,... 
+       size --> s,m,d,xl,xxl,......
+
+==============================================================
+Has-a:-
+-------- 
+    Entity reference.  
+
+1)  is-a => Employee is a Person   (employee inherit the property using extends keyword).
+           Student  is a Person   
+   
+  -> extends keywords make the is-a relationship. 
+     using extends we can inherit the propery.
+
+
+2) Has-a :- 
+  --------
+       Employee  is-a   Address (incorrect) 
+       Employee  has a Address (correct)  
+       
+       Has-a is nothing but, entity reference or, object reference.
+    
+
+====================================================================
+Java 8 features:-
+-------------------- 
+   -> java 8 was the major changes in the history of java versions, till date. 
+
+    some of the features of java 8:-
+    --------------------------------- 
+        1. functional interface. 
+        2. lamda expression.
+        3. method reference.    
+        4. stream api. 
+        5. optional class. 
+        6. new date time api. 
+
+Note:-
+------- 
+    till java 7 => java is OOPS based language 
+                   Employee e= new Employee();    
+                   Storing employee object in a reference variable e.               
+
+    from java 8 onwards =>java is oops + functional programming. 
+                        we can store a function in a variable. 
+                    Employee e = ()->sop("hello");    // arrow function// lamda function
+
+============================================================================
+functional Interface:-
+------------------------  
+   ->A interface is said to be functional interface, if it has only one abstract 
+method.   
+
+   Note:-
+   ------ 
+     --> It is used to write code in concise manner,  (short/ optimised code)
+     --> We can write the code using functional progamming.
+
+
+eg:-
+------ 
+   -> interface contains abstract method,
+   -> we provide the body using sub-class, 
+   -> if the interface is, functional interface then we can 
+      provide the body   
+                   1. normal way,using implements   (till now we have learned)
+                   2. lamda expression.
+                   3. method reference.
+
+===================================================================
+lamda expression:-
+------------------- 
+    rules for lamda expression, 
+      1. no need of method name. 
+      2. no need of parameter type. 
+      3. (->) arrow symbol indicates the body. 
+      4. optional return type.  (for single body no need of return keyword)        
+
+
+eg:-
+-------- 
+    in oops                           lamda 
+   -------------                      -------
+   void disp()                         ()->sop("hello")
+   {          ----->// body
+    sop("hello");// implementatin
+    } 
+   
+
+======================================================================   
+Method Reference:-
+-------------------- 
+   ->:: is the method reference operator,
+   ->Already implemented method, we can refer to functional interface to 
+provide the body.   
+
+   Note:-
+   -------  
+     To provide a body to functional interface, 3 ways, 
+      
+                   1. normal way,using implements   (till now we have learned)
+                   2. lamda expression.
+                   3. method reference. 
+
+   -> we can refer any methods, only it should match return type and parameter.
+
+=====================================================================================
+
+
+        
+     
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

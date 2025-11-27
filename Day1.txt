@@ -393,7 +393,7 @@ oops:-
            polymorphism 
 
 
-class:-
+class:-  (logical)
 ---------
    --> It is a blue print of the object. 
    --> It is a collection of Object.
@@ -402,7 +402,7 @@ class:-
    
 
 
-Object:-
+Object:-   (physical)
 -------
     --> Real World Entity.     
        (It can be any thing) 

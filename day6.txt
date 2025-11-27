@@ -1,0 +1,347 @@
+Day6:-
+------- 
+   Task, 
+
+ 
+  a)create a Calculator class
+    write the four methods, add,sub,mul,div, 
+   all the methods take 2 int arguments and return int. 
+
+  b) create a functional interface, 
+          interface Operation 
+          {
+                 int doOperation(int a, int b);
+
+          }
+      
+      ==> from these above functional interface , 
+          provide the body using method reference from the above calculator calss. 
+
+       ==> hint 
+              Calculator cal = new Calculator();
+              Operation op1 = cal::add; 
+              Operation op2 = cal::sub;
+              
+===================================================================================
+Inbuilt method reference:-
+----------------------------- 
+  1. predicate.
+  2. function. 
+  3. consumer. 
+  ......  
+
+Predicate:-
+------------ 
+   -> It is a Boolean value function, 
+   -> It take one parameter and always return Boolean. 
+
+
+
+=======================================================================
+Stream Api:-
+------------
+  -> Stream is a pipeline to process the data.  (like sql)
+  -> It has some operations. 
+       1.Intermediate  operation. (It process the data , after processing again return 
+                                   a stream)
+                                   some methods:-  filter(),sorted(), map()
+                                         filter-> filter the data based on condition 
+                                         sorted ->sort the data, in ascending/descending 
+                                         map ->It is used to transform the data. 
+                                              (any calculation to each record) 
+                                       square, increase salary by 10%, findper day salary
+ 
+       2. Terminal operation.   (It process the data, after processing it does not 
+                                 return a stream). 
+                                  some methods:-   forEach(),count(),...
+
+
+     collection                     vs               Stream 
+  -----------------------                    ---------------------------  
+->   for Storing the objects                  for processing the objects.
+
+
+Note:-
+-------- 
+     from java 1.8 onwards, java supports functional programming, 
+      so we can store, 
+                    1. we can store function in a variable 
+                    2. we can pass function as a parameter.
+
+
+Note:-
+--------
+  Wrapper class:-
+  ----------------- 
+   ->All the wrapper class, implements,  comparable interface.  
+     comparable interface is used to sort the elements in ascending order. 
+  ->  (default sorting in ascending order)
+
+
+comparable    vs         Comparator 
+-------------            --------------- 
+default sorting           for customize sorting,
+in ascending               ascending or descending 
+
+
+
+only for wrapper 
+class
+                          eg:-
+                        ----- 
+                            Employee-> id, name , salary 
+                           sort based on id  
+                           sort based on name 
+                           sort based on salary
+
+eg:-
+---- 
+   sorted()                    sorted( comparator logic ) 
+                            
+
+=============================================================================
+Java Date and time api:-
+------------------------ 
+package com.tcs.day6.javanewfeatures;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+public class LocalDateDemo {
+
+	public static void main(String[] args) {
+
+		System.out.println(LocalDate.now());
+		System.out.println(LocalDateTime.now());
+		
+		
+		LocalDate today = LocalDate.now();
+		System.out.println("Week Day :"+today.getDayOfWeek());
+		System.out.println("Day of the month :"+today.getDayOfMonth());
+		System.out.println("Day of the Year :"+today.getDayOfYear());
+		System.out.println("Year :"+today.getYear());
+		
+	    LocalDate bookingDate=	LocalDate.of(2025, 11, 27);
+	    System.out.println("Booking Date :"+bookingDate);
+	    
+	    if(bookingDate.isAfter(today))
+	    	System.out.println("valid booking date");
+	    else 
+	    	System.out.println("booking cannot be previous date");
+	}
+
+}
+
+package com.tcs.day6.javanewfeatures;
+
+import java.time.LocalDate;
+import java.time.Period;
+
+public class DateDemo2 {
+
+	public static void main(String[] args) {
+
+	 LocalDate birthDate = LocalDate.of(1991, 11, 30);
+	 Period period = Period.between(birthDate, LocalDate.now());
+     System.out.println(period.getYears() +" years"+ period.getMonths() +" months"+ period.getDays()+" Days");
+	  
+     
+	}
+
+}
+
+
+======================================================
+Optional Class:-
+------------------- 
+  It is used to handle null pointer
+
+========================================================= 
+int a = 10;  // a is int type
+
+class Person{} extends Employee{}
+
+Employee e = new Employee();   // e employee type/ object type /Person type
+
+
+============================================================
+Mutithreading:-
+----------------- 
+Thread:-
+-------- 
+   Thread means task. 
+
+Multithreading:-
+------------------- 
+   Multitasking.  
+
+Multitasking:-
+------------------ 
+    Simultaneously we can perform one than one task.  
+
+   eg:-
+   ---- 
+      ms-word. 
+           typing 
+           grammer spell check. 
+
+
+
+Life Cycle of Human:-
+-------------------- 
+   born -> school--> college-->-job->
+
+
+Life cycle of Thread:-
+-----------------------
+    New Born --> runnable --------- running -- ------------dead
+                              |     |          
+           sleep,supend,wait  |     |           
+                              |     |    notify()
+                          block state      
+
+
+
+New Born:-
+-----------
+    when we create a object for thread class, then the thread is born.
+
+Running:-
+--------- 
+   The Thread is ready for execution, but waiting for the processor availability.
+
+
+Runnable:-
+-----------  
+   The processor has given time for the thread to run, while running the 
+thread will go to following conditions.  
+             sleep()
+             suspend() 
+             wait()
+
+
+Block state:-
+---------------
+    The thread is idel, not running,  
+
+Dead state:-
+------------- 
+    Once the task is finished it will go to Dead state.
+   
+==========================================================================
+To Peform Multitasking, keep our tasking inside run method. 
+
+run() --> it is available inside the Runnable interface.
+
+============================================================================
+task:-
+-------
+
+ Sanjay,     aswin,       yaswanth
+  1 to 10     11 to 15      20 to 30 
+
+3 task --> 3 run
+
+  ==> start()--> will call the run() method and perfrom multitasking.
+
+=======================================================================
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=================================================================================
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
