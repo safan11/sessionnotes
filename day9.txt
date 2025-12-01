@@ -1,0 +1,142 @@
+Day 9:-
+---------- 
+  Spring Core:-
+  --------------
+
+3 way we can do beans configuration:-
+-------------------------------------- 
+ 1. xml based. 
+ 2. java based. 
+ 3. annotation based.  
+
+
+
+ ============================================================
+Dependency Injection Using Annotation based:-
+---------------------------------------------  
+
+     class Employee 
+     {
+        
+     }   
+
+
+
+  In xml based:-
+  -------------- 
+     beans.xml 
+     ------------ 
+     <bean id="e" class="com.tcs.Employee"></bean> 
+
+
+  In Annotation based:-
+ ----------------------- 
+      @Component   --> It will configure the bean as employee
+     class Employee 
+     {
+
+     }   
+
+  
+  Java based Configuration:-
+  ---------------------------- 
+     A seperate Java file is their for beans configuration. 
+
+============================================================
+2 ways to injection the objects values:-
+------------------------------------------ 
+   1. setter injection 
+   2. constructor injection       
+
+ Note:-
+ ------ 
+   -Both are used to initize the values. 
+   -Spring IOC either will use any one to initilize the values. 
+
+
+
+===============================================================
+Autowiring:-
+-------------- 
+   ->It is using to inject, the object dependency 
+     automatically. 
+
+   ->we can use @Autowire annotation, above the fields. 
+
+
+ Note:-
+ ------- 
+     By default, the autowire is will inject using ByType. 
+
+     eg:-
+     ---- 
+       if employee want dept means, there should be only one 
+dept bean in config class,
+
+
+
+@Primary:-
+------------- 
+   when we have multiple beans , to select as a Default 
+   bean we use @primary. 
+
+@Qualifier:-
+------------- 
+   when we have multiple beans, here we give bean to inject 
+   it.  
+
+
+==========================================================
+
+Loosely coupled:-
+------------------
+  How can we achieve this...?
+  ----------------------------- 
+    
+    Define the Interface, and It can have Multiple implementation
+    At run time, based on Client Requirment, we can chnage the 
+    implementation easily.
+
+
+    eg:-
+    ----- 
+       Payment payment = new UPI();
+                         new BankTransfer();
+                         new Cash(); 
+
+
+      Database database = new Mysql(); 
+                          new Oracle();
+                          new PostgresSql();
+
+=============================================================                                         
+
+Layered Architecture:-
+------------------------- 
+
+     Ticked Booking logic:-
+     -------------------------
+       -> user will give source and destination (UI)
+       -> it will fetch data from database,  (database)
+              like what the price and availability, 
+       ->It will calculate the total amount based no passenger and price (service)
+       -> if available it will book the ticket (service)
+       -> after booking it need store the ticket details in database
+
+
+    We have define in different packages, for better readiblity and 
+    code modularity. 
+
+ ====================================================================   
+
+DAO    -----> Data Access Object  
+(repository)
+           In DAO , we write database logic 
+
+
+Service --> we write Business logic 
+
+
+==================================================================
+
+

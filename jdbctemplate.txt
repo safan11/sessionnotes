@@ -1,0 +1,216 @@
+SPRING JDBC TEMPLATE - 
+=====================================================
+
+This example shows how to use Spring JdbcTemplate with Java-based configuration to:
+1. Insert data into MySQL
+2. Retrieve data from MySQL
+
+
+---------------------------------------------------------
+1) WHAT IS JDBC TEMPLATE?
+---------------------------------------------------------
+
+JdbcTemplate is a helper class provided by Spring Framework that simplifies working with databases.
+It handles common JDBC tasks automatically:
+
+- Opening/closing database connections
+- Creating PreparedStatements
+- Executing SQL queries
+- Handling ResultSet
+- Managing exceptions
+
+Instead of writing repetitive boilerplate JDBC code, we can directly use methods like:
+- update()      → for INSERT, UPDATE, DELETE
+- query()       → for retrieving multiple rows
+- queryForObject() → for retrieving single row or value
+- execute()     → for DDL commands like CREATE TABLE
+
+It makes database operations **clean, readable, and easy to maintain**.
+
+---------------------------------------------------------
+2) WHAT IS JAVA-BASED BEAN CONFIGURATION?
+---------------------------------------------------------
+
+Spring beans can be defined using Java classes instead of XML.  
+Java-based configuration uses:
+
+- `@Configuration` → marks a class as configuration
+- `@Bean` → defines a Spring-managed bean
+
+For example, we can create beans for:
+- DataSource → defines database connection
+- JdbcTemplate → performs JDBC operations
+- DAO classes → performs database operations
+
+This approach avoids XML and keeps configuration type-safe and easy to read.
+
+---------------------------------------------------------
+3) EMPLOYEE CLASS
+---------------------------------------------------------
+
+public class Employee {
+
+    private int id;
+    private String name;
+
+    // Getter and Setter for ID
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    // Getter and Setter for Name
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+}
+
+---------------------------------------------------------
+4) DAO CLASS (EMPLOYEEDAO)
+---------------------------------------------------------
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import java.util.List;
+
+public class EmployeeDAO {
+
+    private JdbcTemplate jdbcTemplate;
+
+    // Constructor to inject JdbcTemplate
+    public EmployeeDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    // Insert employee into database
+    public void save(Employee emp) {
+        String sql = "INSERT INTO employee (id, name) VALUES (?, ?)";
+        jdbcTemplate.update(sql, emp.getId(), emp.getName());
+    }
+
+    // Retrieve all employees from database
+    public List<Employee> getAllEmployees() {
+        String sql = "SELECT * FROM employee";
+
+        // BeanPropertyRowMapper automatically maps DB columns to object fields
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Employee.class));
+    }
+
+}
+
+---------------------------------------------------------
+5) JAVA-BASED CONFIGURATION (AppConfig.java)
+---------------------------------------------------------
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import com.zaxxer.hikari.HikariDataSource;
+
+@Configuration
+public class AppConfig {
+
+    // DataSource bean defines database connection details
+    @Bean
+    public HikariDataSource dataSource() {
+        HikariDataSource ds = new HikariDataSource();
+        ds.setJdbcUrl("jdbc:mysql://localhost:3306/testdb"); // replace with your DB name
+        ds.setUsername("root");                               // replace with your username
+        ds.setPassword("password");                           // replace with your password
+        return ds;
+    }
+
+    // JdbcTemplate bean uses DataSource to perform DB operations
+    @Bean
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource());
+    }
+
+    // EmployeeDAO bean to perform insert and retrieve operations
+    @Bean
+    public EmployeeDAO employeeDAO() {
+        return new EmployeeDAO(jdbcTemplate());
+    }
+
+}
+
+---------------------------------------------------------
+6) MAIN APPLICATION (MainApp.java)
+---------------------------------------------------------
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import java.util.List;
+
+public class MainApp {
+
+    public static void main(String[] args) {
+
+        // Load Spring context using AppConfig class
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(AppConfig.class);
+
+        // Get EmployeeDAO bean from context
+        EmployeeDAO dao = context.getBean(EmployeeDAO.class);
+
+        // INSERT EMPLOYEES
+        Employee emp1 = new Employee();
+        emp1.setId(101);
+        emp1.setName("John");
+        dao.save(emp1);
+
+        Employee emp2 = new Employee();
+        emp2.setId(102);
+        emp2.setName("Emma");
+        dao.save(emp2);
+
+        System.out.println("Data Inserted Successfully\n");
+
+        // RETRIEVE EMPLOYEES
+        List<Employee> list = dao.getAllEmployees();
+        System.out.println("Employee List:");
+        for(Employee e : list) {
+            System.out.println(e.getId() + " | " + e.getName());
+        }
+
+        // Close Spring context
+        context.close();
+    }
+
+}
+
+---------------------------------------------------------
+7) EXPLANATION OF THE CODE
+---------------------------------------------------------
+
+1. **JdbcTemplate**
+   - Used to perform all database operations without manual JDBC code.
+   - `update()` → inserts data into the table.
+   - `query()` with `BeanPropertyRowMapper` → retrieves data and maps to Employee object.
+
+2. **Bean Configuration**
+   - `@Configuration` → tells Spring this class contains bean definitions.
+   - `@Bean` → defines each bean (DataSource, JdbcTemplate, EmployeeDAO).
+   - `DataSource` → contains database URL, username, password.
+   - `JdbcTemplate` → uses DataSource to perform queries.
+   - `EmployeeDAO` → uses JdbcTemplate to perform insert and retrieve operations.
+
+3. **Main Application**
+   - Loads Spring context.
+   - Gets EmployeeDAO bean.
+   - Inserts employees into the database.
+   - Retrieves and prints all employees.
+
+---------------------------------------------------------
+SUMMARY
+---------------------------------------------------------
+
+- JdbcTemplate simplifies JDBC operations.
+- Bean configuration avoids XML files.
+- `BeanPropertyRowMapper` automatically maps database columns to class fields.
+- This approach is beginner-friendly and easy to understand.

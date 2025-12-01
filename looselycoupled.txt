@@ -1,0 +1,116 @@
+
+
+
+=> loosely coupled, 
+  -------------------- 
+
+
+package structure:-
+---------------- 
+  com.tcs.dao 
+  com.tcs.service
+  com.tcs.client
+
+
+
+=============================================
+package com.tcs.dao;
+
+public interface DBConnect {
+
+	public void databaseBrandName();
+}
+
+===============================================
+
+package com.tcs.dao;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class MySql implements DBConnect {
+
+	@Override
+	public void databaseBrandName() {
+	    
+		System.out.println("connected with MySql database");
+		System.out.println("fetch the data from mysql");
+
+	}
+
+}
+
+
+========================================
+
+package com.tcs.dao;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Oracle implements DBConnect {
+
+	@Override
+	public void databaseBrandName() {
+	   System.out.println("connecting to oracle");
+		
+	}
+
+}
+
+
+=============================================
+
+
+package com.tcs.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+import com.tcs.dao.DBConnect;
+
+@Component
+public class ProductService {
+
+	@Autowired
+	@Qualifier("mySql")
+	DBConnect connect;
+	
+	public void display()
+	{
+		connect.databaseBrandName();
+		System.out.println("this is service layer");
+	}
+	
+}
+
+
+
+====================================================
+
+package com.tcs.client;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.tcs.service.ProductService;
+
+
+public class Client {
+
+	public static void main(String[] args) {
+		
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.scan("com.tcs");
+        context.refresh();
+        
+  ProductService productService = (ProductService)context.getBean("productService");
+	productService.display();
+	
+	
+	}
+
+}
+
+
+================================================

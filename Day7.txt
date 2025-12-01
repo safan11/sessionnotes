@@ -1,0 +1,120 @@
+Day7:-
+------- 
+   multithreading continue. 
+   -------------------------- 
+  Life cycle, 
+  Sleep method 
+  Thread Name 
+  Thread Priority  --> 
+  Thread Join 
+  Thread synchronization 
+========================================================================
+lang package:-
+----------------- 
+  interface Runnable 
+{
+   run();
+
+}
+
+class Thread implements Runnable 
+{
+   start()
+   sleep();
+
+}
+=====================================================
+
+How to Create Thread in Java. 
+1. extends Thread class.   -->  (run + start)==> it will not support for inheritance.             
+2. implements Runnable Interface.  --> (run)
+
+======================================================
+
+Thread Priority:-
+------------------ 
+    the priority value ranges from 1 to 10, 
+     
+least -> 1 
+highest - 10 
+default - 5 
+
+the thread which is having high priority will try to complete the task first.
+
+
+Thread Join:-
+-------------- 
+    -> after finish the task, then only other thread will start, 
+       eg:-
+       ----- 
+           login-->  withdraw
+          (finish)    (withdraw can be possible)
+
+
+Synchronised:-
+---------------- 
+    At a time only one thread can access the Synchronised method. 
+
+Synchronised method using two threads:-
+--------------------------------------------
+==========================================================================
+Refer Design pattern from the document
+==================================================================================
+JDBC:-
+--------
+ ->Java Database Connectivity.  
+ 
+why we need database...?
+------------------------ 
+  -> To Store data permenantely. 
+
+ -> JDBC is a API, By using this Api we can interact with database. 
+     API/framework:- (It provides some built in methods).
+     --------------
+
+  Note:-
+  ------ 
+      inside jre-> we will not get MySQL driver, so we have to download separately.
+
+ jdbc code , we should in write in try catch block,  
+   
+ try {
+
+   } 
+ catch 
+   {
+
+   }  
+
+
+steps to get the connection and perform some operation:-
+----------------------------------------------------------- 
+  1. load the driver class. 
+  2. establish the connection.
+   
+
+
+=============================================================
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,343 @@
+Day 8:-
+--------
+Spring Framework:-
+------------------- 
+   Framework:-
+   ---------- 
+      Half built solution 
+        or 
+     readymade solution are available to the developers, 
+        or
+     library classes,methods 
+
+In the market, we have N number of Framework...? 
+---------------------------------------------------- 
+   collection framework:- to implement data structure,  
+   hibernate framework:-  to interact with database using objects.  (database framewok)
+   struts framework:- validation framework.(server side validation) 
+   spring framework:- It is a enterprise application development framework. 
+                       (end to end application development framework).
+
+    
+what is Spring framework:-
+-------------------------- 
+    -->It is a java based 3rd party framework. 
+    -->It founded by rod johnson in the year 2005. 
+    -->It is mainly used to develope enterprise application. 
+    --> Spring is considered as framework of framework.  
+        (In Spring framework, we can intergrate some other framework also). 
+    
+=============================================================================
+Project:-
+-------------- 
+     Flipkart (modules)
+     ----------------- 
+login&register 
+cart 
+product 
+customer 
+address    --->   address management
+payment    --> payment gateway, card details,
+whistlist 
+reviews 
+orders 
+offers 
+
+
+   Spring (modules)   (every modules has some purpose)
+  --------------------- 
+ 1. spring core  
+ 2. spring AOP 
+ 3. spring data 
+ 4. spring web 
+ 5. spring security 
+ 6. spring boot
+
+
+module 1:-
+------------- 
+ core module / IOC (Inversion of Control) / dependency Injection 
+----------------------------------------------------------------
+      
+ what this modules says..?
+ -------------------------------   
+  ->do not create the object, inside another java class, Instead spring will 
+create the object for you. 
+
+  -> if we create the objects, it will becomes tightly coupled. 
+           class Car 
+          {
+              Engine engine = new Engine(1,""); // car needs engine,         
+           }
+      
+          class Engine 
+          {
+                Engine(int a, String name) 
+                {
+                     
+                }
+          }
+
+  -> Changes made in one class, will force the developer to 
+     change in other class as well. 
+
+  ->eg:-
+    ----- 
+         class Car 
+          {
+              Engine engine = new Engine(); // car needs engine,if we create Engine
+                                              object, it becomes tightly coupled         
+           }
+
+        -> They are tightly coupled and Dependent, we have to remove the dependency 
+between the classes, using Dependency Injection.
+
+       ->Two Types Of Dependency Injection:-
+           1. setter Injection 
+           2. constructor Injection.
+           
+
+
+=================================================================================== 
+  container:-
+  ------------- 
+      ->  container is responsible to manage the Object, like creation,desruction, 
+and maintain the state. 
+
+     -> In Spring IOC is the container, which will manage the Object. 
+
+  java                            Spring
+ -----------                    ---------
+we have to create the           IOC will create the object 
+object 
+(psvm)
+                                It will follow the design pattern 
+                                like singleton , prototype. 
+                            
+                                It will be loosely coupled 
+
+
+Note:-
+------- 
+     java ==> Objects 
+     spring ==> beans  
+
+      Objects<==>Beans
+
+====================================================================================
+2. AOP:-
+---------- 
+     Aspect Oriented Programming 
+     ----------------------------- 
+  
+   what this module says..? 
+   --------------------------- 
+           do not mix the business logic with non-business logic.
+      
+   business logic 
+   ---------------
+    -> deposit 
+    -> withdraw
+  
+   Non-business logic 
+   -------------------- 
+     -> message service 
+     -> email service 
+     -> logging  
+
+   (do not combine these logic, at run time it will cross cut and run it.) 
+   By using AOP we can achieve the cross cutting concerns. 
+
+
+============================================================================
+3. spring data:-   (spring jdbc)
+  ---------------- 
+     ->By using spring data, we can interact with the database easily. 
+     -> It removes the boiler plate connection code, and automatically 
+        handled the exceptions.
+
+4. spring web:-
+  -------------- 
+     -> It helps us to create web application easily including RESTful web service. 
+     -> It runs inside the server.
+
+5. spring security:-
+ -------------------  
+     -> To make web application secure. 
+        (It has builtin library methods are available to secure the url's and necessary 
+  configuration for routes)
+     -> we can configure role based
+
+6. spring boot:-
+--------------------
+   -> It is one of the module of spring. 
+   -> It removes boiler platecode from spring framework. 
+   -> In spring boot, every thing is auto configured. 
+   -> It tells developers, do not waste time on the configuration, instead focus on 
+business logic. All the configuration will be taken care by spring.
+    
+   Note:-
+   ------ 
+     ->In spring we have to do lot of configuration. 
+     ->In spring boot every thing is auto-configuration
+       auto-configuration like:-
+            a. It establish database connection automatically.
+            b. It provides embedded tomcat server for web application. 
+
+=====================================================================================
+Module 1:-
+------------- 
+   1.core module / IOC / DI  
+
+
+eg:- I have class
+------------ 
+   class Employee 
+   {
+       void display()
+       {
+
+       }
+   }
+
+
+In java:-
+-----------
+
+Employee e = new Employee(); // object creation
+e.display();  
+
+In Spring:-
+-------------
+  Spring only create the object but, it will refer the configuration file, 
+to give the object name.(decide the design pattern). 
+
+beans.xml
+------------ 
+    <beans >
+       <bean id="e" class="com.tcs.Employee"/>
+       <bean id="p"  class="com.tcs.Product"/>
+ 
+    <beans > 
+
+
+========================================================================== 
+ IOC:-   Inversion of Control
+ ------ 
+    ->It is responsible to create and manage the beans. 
+    -> IOC is the container. 
+    
+     2 types of IOC:-
+     ----------------- 
+        1. BeanFactory 
+        2. ApplicationContext. 
+
+Note:-
+------ 
+   core java --> main method is the container. 
+   spring    ---> IOC is the container.
+      
+
+=========================================================================== 
+ 3 ways to do the beans Configuration. 
+ --------------------------------------- 
+  1. xml based
+  2. java based 
+  3. annotation based
+
+===========================================================================
+
+core java --> jre has all the predefined classes  
+                 collection class, lang package 
+                   
+spring    ---> some library of spring.
+                eg:-
+                ---- 
+                   Spring Context (It has all the library to work with module 1)
+
+                  from Maven Repository we can add the dependency... 
+                  official site:  mvnrepository.com 
+
+
+maven:- we create a maven project, to manage the project dependency. 
+        (easily we can maven the external library). 
+
+       It can build the project. 
+       eg:- like jar file, reports 
+
+       It can has build life cycle.  (compile, install, test),...
+
+       
+
+====================================================================
+Dependency Injection using Xml based configuration:-
+-----------------------------------------------------  
+
+steps:-
+--------- 
+ 1. create a maven project. 
+
+ 2. add the dependencies in the pom.xml 
+      
+     <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>5.2.11.RELEASE</version>
+</dependency>
+
+    what is central repo,  -- mvnrepository.com
+            remote repo,   -- inside organization, they have their remote repository
+            local repo,    -- inside developer system .m2 folder
+
+     Note:-
+     ------- 
+        next time if we use the same repository, it will take from local repository        
+
+
+
+3. files to create:- 
+   ------------------ 
+      beans.xml ---> beans definition
+     
+    
+
+
+
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                  
+                    
+   
+    
+
+
+
+
+
+
+
+
+
+
