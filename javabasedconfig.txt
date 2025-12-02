@@ -1,0 +1,194 @@
+Here is the **complete working project** in **pure Java-based configuration (NO @Component)** formatted cleanly in **.txt style** as requested:
+
+---
+
+```
+==========================
+📁 PROJECT STRUCTURE
+==========================
+
+src/
+ └── com/tcs
+      ├── repository/
+      │     ├── Course.java
+      │     ├── Java.java
+      │     └── Python.java
+      │
+      ├── service/
+      │     └── Enroll.java
+      │
+      ├── config/
+      │     └── AppConfig.java
+      │
+      └── client/
+            └── Client.java
+
+=========================================
+FILE: Course.java
+PACKAGE: com.tcs.repository
+=========================================
+
+package com.tcs.repository;
+
+public interface Course {
+
+	String getCourseName();
+	int getDuration();
+	
+}
+
+
+=========================================
+FILE: Java.java
+PACKAGE: com.tcs.repository
+=========================================
+
+package com.tcs.repository;
+
+public class Java implements Course {
+
+	@Override
+	public String getCourseName() {
+		return "java";
+	}
+
+	@Override
+	public int getDuration() {
+		return 30;
+	}
+}
+
+
+=========================================
+FILE: Python.java
+PACKAGE: com.tcs.repository
+=========================================
+
+package com.tcs.repository;
+
+public class Python implements Course {
+
+	@Override
+	public String getCourseName() {
+		return "python";
+	}
+
+	@Override
+	public int getDuration() {
+		return 20;
+	}
+}
+
+
+=========================================
+FILE: Enroll.java
+PACKAGE: com.tcs.service
+=========================================
+
+package com.tcs.service;
+
+import com.tcs.repository.Course;
+
+public class Enroll {
+
+	public int calculateFee(boolean membership, Course course) {
+
+		System.out.println("You selected: " + course.getCourseName());
+		System.out.println("Duration: " + course.getDuration());
+
+		int baseFee = course.getDuration() * 1000;
+
+		if (membership) {
+			baseFee -= baseFee * 0.10;
+		}
+
+		System.out.println("Total payable fee: " + baseFee);
+		return baseFee;
+	}
+}
+
+
+=========================================
+FILE: AppConfig.java
+PACKAGE: com.tcs.config
+=========================================
+
+package com.tcs.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.tcs.repository.Course;
+import com.tcs.repository.Java;
+import com.tcs.repository.Python;
+import com.tcs.service.Enroll;
+
+@Configuration
+public class AppConfig {
+
+	@Bean
+	public Course javaCourse() {
+		return new Java();
+	}
+
+	@Bean
+	public Course pythonCourse() {
+		return new Python();
+	}
+
+	@Bean
+	public Enroll enrollService() {
+		return new Enroll();
+	}
+}
+
+=====================================
+FILE: Client.java
+PACKAGE: com.tcs.client
+=========================================
+
+package com.tcs.client;
+
+import java.util.Scanner;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.tcs.config.AppConfig;
+import com.tcs.repository.Course;
+import com.tcs.service.Enroll;
+
+public class Client {
+
+	public static void main(String[] args) {
+
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter course name (java/python):");
+		String userInput = scanner.nextLine();
+
+		Course course = null;
+
+		if(userInput.equalsIgnoreCase("java")) {
+			course = context.getBean("javaCourse", Course.class);
+		}
+		else if(userInput.equalsIgnoreCase("python")) {
+			course = context.getBean("pythonCourse", Course.class);
+		}
+		else {
+			System.out.println("Invalid course selected!");
+			context.close();
+			return;
+		}
+
+		Enroll enroll = context.getBean("enrollService", Enroll.class);
+		enroll.calculateFee(false, course);
+
+		context.close();
+	}
+}
+
+===================================
+
+
+

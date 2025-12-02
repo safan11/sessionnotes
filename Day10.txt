@@ -1,0 +1,183 @@
+Spring boot:-
+-----------------
+   -> It is One of the Module of Spring framework,  
+   -> It is Built on top of Spring framework. 
+   -> It is removes the boiler plate code from Spring framework. 
+
+   ->The main moto of Spring boot is, do not waste time on configuration, 
+   instead focus on the business logic, In Spring boot every thing is 
+   auto-configured.  
+
+     auto-configured means, 
+        -> to run web application, It gives server by default.
+        -> It will establish database connection easily. (no need to write the connection code)
+   
+
+   -> It has starter parent dependency.  
+        (To run any modules, It gives all the necessary dependency). 
+
+    -> It is gives standalone application. (where we can run as a java application)
+
+    ->By Using Spring Boot, It is easy to create Microservice based application. 
+
+    -> Spring boot has a Conventions for the configuration. 
+
+Note:-
+------- 
+   It supports annotation and java based configuration. 
+
+
+===============================================================================
+ORM:-
+-------
+   -> Object Relational Mapping,
+   -> It is used to map java to database table.
+
+
+   Java                  database
+   -----                 --------
+    oops                  relational
+      ----directly---------- (they cannot communicate)
+
+  class Employee         create table Employee(id int, name varchar(30))
+  {                          
+
+  }
+
+
+
+why we need database..?
+------------------------ 
+  ->To Store data permanently, we need database,   
+
+======================================================================
+ How ORM works :-
+ ----------------- 
+   class Employee     -------------------> table 
+   {
+     int id;              ----------------> column name
+     String name;
+     String dept;
+   }
+    
+  Employee e1 = new Employee(1,'sachin','hr');    ---> rows
+  Employee e2 = new Employee(2,'anil','dev');
+
+  
+       Employee 
+       -------------------
+       id    name    dept 
+        1    sachin    hr 
+        2    anil      dev
+  
+====================================================================
+what happens , if we do not use ORM...?
+------------------------------------------- 
+   ->In that case, we should write SQL queries inside java code.
+   
+   No one uses this approach 0%.   (difficult to manage java code and sql code for complex problem)
+
+========================================================================
+
+Adv of ORM:-
+------------------
+   -> It is easy to access using object. 
+   -> It will generate database independent queries, (so that we can connect to 
+   any databases.)
+
+
+========================================================================== 
+So of the Popular ORM framwork:-
+--------------------------------- 
+   hibernate,  (popular)  --> It is the popular orm framework.
+   ibaitas, 
+   top link,......
+
+different between Hibernate and JPA 
+------------------------------------------- 
+
+
+
+
+
+
+==========================================================================   
+In Spring boot:-
+----------------- 
+
+if we want to connect to database:-
+------------------------------------- 
+  (add this library)
+  1. spring data jpa   
+  2. mysql
+  
+
+====================================================================
+steps:-
+-------- 
+ 1. create a starter project. 
+ 2. add dependency, 
+       spring data jpa (hibernate and JPA)
+       mysql      (driver)
+
+  
+ 3. finish 
+
+ 4. when ever we are using Spring data JPA, 
+     we have to fill the connection details in application.properties. 
+    (It internally uses dependency Injection, to esatblish connection)
+      
+      
+# MySQL Datasource Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/tcs?useSSL=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+5.     create the packages:-
+     -------------------- 
+       com.tcs         (follow the base package, for component scan, or else it will give error)
+       com.tcs.model 
+       com.tcs.repository
+
+
+
+6. model class:-
+   ------------- 
+     ->It can be Employee, Customer, Product, or it can be any object. 
+
+     ->This class should be encapsulated, and have setter and getter, ToString,
+       and constrcutor. 
+
+    Mandatory Annotation for Entity class:-
+    --------------------------------------- 
+         @Entity   --> indicates this should map with database table.
+         @Id       --> It indicates it is a primary key.
+
+
+6.Repository Layer:-
+--------------------- 
+  This layer is complete abstraction,No need to do the implementation 
+  By OurSelf, At run time, Spring boot (spring data JPA) will provide the implementation.
+
+  Since We are Using, Spring Data JPA, --> It make data layer complete abstraction
+
+
+ Just Define the interface-> It should extends with JpaRepository interface. 
+
+
+ Note:-
+ ---------- 
+
+    interface JpaRepository extends CrudRepository 
+    {
+
+        save(Employee e),  // it is similar to insert query 
+        findAll() ; select * from employee
+    }    
+
+
+
+
+
+

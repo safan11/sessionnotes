@@ -1,0 +1,19 @@
+recap:-
+------- 
+  1. why we need spring..?
+  2. modules of spring..?
+  3.what is IOC..? 
+  4.what is DI..? 
+  5.what is AutoWire..? 
+  6.Types of Autowire..? 
+  7. some annotations, 
+        @Autowire 
+        @Primary 
+        @Qualifier,.. 
+  8.bean scope 
+
+  =========================================================
+
+
+
+

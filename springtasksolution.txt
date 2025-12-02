@@ -1,0 +1,201 @@
+
+
+This document contains:
+1. Java-Based Configuration Example
+2. Annotation-Based Configuration Example
+3. @Value Annotation Example (with external properties file)
+
+============================================================
+EXAMPLE 1: Java-Based Configuration (No Annotations in Class)
+============================================================
+
+STEP 1: Create FuelCostCalculator.java
+------------------------------------------------------------
+public class FuelCostCalculator {
+
+    private double mileage;
+    private double fuelPrice;
+
+    public FuelCostCalculator(double mileage, double fuelPrice) {
+        this.mileage = mileage;
+        this.fuelPrice = fuelPrice;
+    }
+
+    public double calculateFuelCost(double distance) {
+        return (distance / mileage) * fuelPrice;
+    }
+
+    public void displayDetails(double distance) {
+        System.out.println("==== Fuel Cost Estimation ====");
+        System.out.println("Mileage (km/l): " + mileage);
+        System.out.println("Fuel Price per Liter: ₹" + fuelPrice);
+        System.out.println("Distance to Travel: " + distance + " km");
+        System.out.println("Estimated Total Fuel Cost: ₹" + calculateFuelCost(distance));
+        System.out.println("================================");
+    }
+}
+------------------------------------------------------------
+
+STEP 2: Create AppConfig.java
+------------------------------------------------------------
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public FuelCostCalculator fuelCostCalculator() {
+        return new FuelCostCalculator(50.0, 105.50);
+    }
+}
+------------------------------------------------------------
+
+STEP 3: Create ClientApp.java
+------------------------------------------------------------
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class ClientApp {
+    public static void main(String[] args) {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        FuelCostCalculator calculator = context.getBean(FuelCostCalculator.class);
+        calculator.displayDetails(200);
+    }
+}
+------------------------------------------------------------
+
+
+============================================================
+EXAMPLE 2: Annotation-Based Configuration (No @Value)
+============================================================
+
+STEP 1: FuelCostCalculator.java
+------------------------------------------------------------
+import org.springframework.stereotype.Component;
+
+@Component
+public class FuelCostCalculator {
+
+    private double mileage = 50.0;
+    private double fuelPrice = 105.50;
+
+    public double calculateFuelCost(double distance) {
+        return (distance / mileage) * fuelPrice;
+    }
+
+    public void displayDetails(double distance) {
+        System.out.println("==== Fuel Cost Estimation ====");
+        System.out.println("Mileage (km/l): " + mileage);
+        System.out.println("Fuel Price per Liter: ₹" + fuelPrice);
+        System.out.println("Distance to Travel: " + distance + " km");
+        System.out.println("Estimated Total Fuel Cost: ₹" + calculateFuelCost(distance));
+        System.out.println("================================");
+    }
+}
+------------------------------------------------------------
+
+STEP 2: AppConfig.java
+------------------------------------------------------------
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "your.package.name")
+public class AppConfig {}
+------------------------------------------------------------
+
+STEP 3: ClientApp.java
+------------------------------------------------------------
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class ClientApp {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        FuelCostCalculator calculator = context.getBean(FuelCostCalculator.class);
+        calculator.displayDetails(200);
+        context.close();
+    }
+}
+------------------------------------------------------------
+
+
+============================================================
+EXAMPLE 3: Using @Value Annotation + External Properties File
+============================================================
+
+STEP 1: Create properties file
+
+Location: src/main/resources/config.properties
+
+------------------------------------------------------------
+mileage=50.0
+fuel.price=105.50
+------------------------------------------------------------
+
+
+STEP 2: FuelCostCalculator.java (with @Value)
+------------------------------------------------------------
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
+public class FuelCostCalculator {
+
+    @Value("${mileage}")
+    private double mileage;
+
+    @Value("${fuel.price}")
+    private double fuelPrice;
+
+    public double calculateFuelCost(double distance) {
+        return (distance / mileage) * fuelPrice;
+    }
+
+    public void displayDetails(double distance) {
+        System.out.println("==== Fuel Cost Estimation Using @Value ====");
+        System.out.println("Mileage (km/l): " + mileage);
+        System.out.println("Fuel Price per Liter: ₹" + fuelPrice);
+        System.out.println("Distance to Travel: " + distance + " km");
+        System.out.println("Estimated Total Fuel Cost: ₹" + calculateFuelCost(distance));
+        System.out.println("================================");
+    }
+}
+------------------------------------------------------------
+
+STEP 3: MainApp.java (No Config class needed)
+------------------------------------------------------------
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
+
+@ComponentScan(basePackages = "your.package.name")
+@PropertySource("classpath:config.properties")
+public class MainApp {
+
+    public static void main(String[] args) {
+
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(MainApp.class);
+
+        FuelCostCalculator calculator = context.getBean(FuelCostCalculator.class);
+
+        calculator.displayDetails(200);
+
+        context.close();
+    }
+}
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+SUMMARY OF APPROACHES
+------------------------------------------------------------
+
+Method                          Bean Created By?      Uses @Value?    Uses @Component?
+--------------------------------------------------------------------------------------
+Java-Based Config               AppConfig.java        No              No
+Annotation-Based                @Component            No              Yes
+@Value + Properties File        @Component            Yes             Yes
+
+

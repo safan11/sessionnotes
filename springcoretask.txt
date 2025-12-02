@@ -1,0 +1,62 @@
+
+
+Title: Vehicle Mileage Cost Calculator using Java-Based Configuration
+----------------------------------------------------
+
+Objective:
+----------
+Create a Spring Core application that demonstrates dependency injection 
+using Java-based configuration 
+The program should calculate estimated fuel cost for traveling a given distance.
+
+----------------------------------------------------
+Requirements:
+----------------------------------------------------
+
+1. Create a class named: FuelCostCalculator
+
+   - Fields:
+        double mileage        --> Represents how many kilometers the vehicle travels per liter
+        double fuelPrice      --> Represents the price of one liter of fuel
+
+   - Constructor:
+        Should accept mileage and fuelPrice values
+
+   - Method:
+        public double calculateFuelCost(double distance)
+        Formula:
+            cost = (distance / mileage) * fuelPrice
+
+
+2. Create a Java configuration class named: AppConfig
+
+   - Must use:
+        @Configuration
+        @Bean
+
+   - Inside @Bean method, return a FuelCostCalculator object by passing values directly
+     
+   
+   - Inject the following sample values:
+        mileage = 50.0
+        fuelPrice = 105.50
+
+
+3. Create a client class named: ClientApp
+
+   - Load Spring context using: AnnotationConfigApplicationContext
+   - Retrieve the FuelCostCalculator bean
+   - Call calculateFuelCost(200) (assume distance = 200 km)
+   - Print the result output like below:
+
+----------------------------------------------------
+Expected Output Format
+----------------------------------------------------
+
+==== Fuel Cost Estimation ====
+Mileage (km/l): 50.0
+Fuel Price per Liter: ₹105.50
+Distance to Travel: 200 km
+Estimated Total Fuel Cost: ₹422.0
+==============================
+

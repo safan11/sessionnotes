@@ -1,0 +1,33 @@
+
+interface Course 
+{
+     String courseName();
+     int  duration();
+}
+
+Class Java Implemenets Course{}
+Class Python Implements Course{}
+
+=========================================
+
+Class Enroll 
+{
+      Course course;
+
+      int calculateFee(boolean memberShip)
+      {
+
+         return amount;  
+      }
+}
+
+
+
+=============================================
+
+Clinet code:-
+-------------- 
+     CalculateFee(true);
+
+
+=========================================================

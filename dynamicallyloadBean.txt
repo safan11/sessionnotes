@@ -1,0 +1,127 @@
+package com.tcs.repository;
+
+public interface Course {
+
+	String getCourseName();
+	int getDuration();
+	
+}
+
+
+=====================
+
+package com.tcs.repository;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Java implements Course {
+
+	@Override
+	public String getCourseName() {
+		// TODO Auto-generated method stub
+		return "java";
+	}
+
+	@Override
+	public int getDuration() {
+		// TODO Auto-generated method stub
+		return 30;
+	}
+
+}
+
+===============================
+
+package com.tcs.repository;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Python implements Course {
+
+	@Override
+	public String getCourseName() {
+		// TODO Auto-generated method stub
+		return "python";
+	}
+
+	@Override
+	public int getDuration() {
+		// TODO Auto-generated method stub
+		return 20;
+	}
+
+}
+
+===============================
+
+package com.tcs.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+import com.tcs.repository.Course;
+
+@Component
+public class Enroll {
+
+	//write these logic
+    public int calculateFee(boolean memeberShip,Course course)
+	{
+		int amount=0;
+		     System.out.println("you have selected :"+ course.getCourseName());
+		     System.out.println("duration :"+ course.getDuration());
+		
+		return amount;
+		
+	}
+}
+
+
+===============================
+
+package com.tcs.client;
+
+import java.util.Scanner;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.tcs.repository.Course;
+import com.tcs.repository.Java;
+import com.tcs.repository.Python;
+import com.tcs.service.Enroll;
+
+public class Client {
+
+	public static void main(String[] args) {
+
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.tcs");
+		context.refresh();
+		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("enter course name");
+		String userInputCourse=scanner.nextLine();
+		
+		Course course=null;
+		
+		if(userInputCourse.equalsIgnoreCase("java"))
+		{
+		     course = (Java)	context.getBean("java");
+		}
+		
+		else if(userInputCourse.equalsIgnoreCase("python"))
+		{
+			course = (Python) context.getBean("python");
+		}
+		
+	    Enroll enroll = (Enroll)	context.getBean("enroll");
+	 
+	    enroll.calculateFee(false,course );
+	}
+
+}
+
+==============================================
