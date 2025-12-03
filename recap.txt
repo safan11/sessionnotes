@@ -2,7 +2,7 @@ recap:-
 ------- 
   1. why we need spring..?
   2. modules of spring..?
-  3.what is IOC..? 
+  3.what is IOC, and is types? 
   4.what is DI..? 
   5.what is AutoWire..? 
   6.Types of Autowire..? 
@@ -10,7 +10,21 @@ recap:-
         @Autowire 
         @Primary 
         @Qualifier,.. 
-  8.bean scope 
+  8.bean scope.
+  9.what is AOP
+  10. Which Java version did you use, and why?
+  11. What collections did you use and why? and explain some interface of collection.
+  12.what is design pattern, and explain its types..?
+  13.What is the difference between == and .equals() method in Java?
+  14. What are String, StringBuilder, and StringBuffer? When do you use each?
+  15.What is a constructor in Java? Can a constructor be private? explain rules for constructor..?
+  16.explain overriding..? explain the overriding rules..?
+  17.What is the final, finally, and finalize() difference in Java?
+  18.What are the key features introduced in Java 8?
+  19.What is a Functional Interface? Can you name some built-in functional interfaces?
+  20.What is a Lambda Expression, and why is it used?
+  21.What is the difference between Intermediate and Terminal operations in Streams?
+  
 
   =========================================================
 
