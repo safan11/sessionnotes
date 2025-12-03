@@ -24,9 +24,13 @@ recap:-
   19.What is a Functional Interface? Can you name some built-in functional interfaces?
   20.What is a Lambda Expression, and why is it used?
   21.What is the difference between Intermediate and Terminal operations in Streams?
-  
+  22.why do we need equals() when == already exists?
+  23.can we extends String class..? 
+  24.What are the major differences between List, Set, and Map?
+  25.Why must equals() and hashCode() be overridden together?
+ 
 
-  =========================================================
+  
 
 
 
