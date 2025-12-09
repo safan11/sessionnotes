@@ -1,0 +1,108 @@
+===============================================================
+ PRACTICE QUESTION  
+===============================================================
+
+---------------------------------------------------------------
+CATEGORY 1: BASIC STRING & NUMBER PROBLEMS
+---------------------------------------------------------------
+
+1) Palindrome Checker  
+   Description: Check whether the given string or number reads the same forwards and backwards.  
+   Sample Input: "Madam"  
+   Output: "Palindrome"  
+
+2) Vowel & Consonant Analyzer  
+   Description: Count vowels, consonants, digits, and spaces from the input string.  
+   Sample Input: "Hello World 123"  
+   Output:  
+     Vowels: 3  
+     Consonants: 7  
+     Digits: 3  
+     Spaces: 2  
+
+3) Character Frequency Counter  
+   Description: Count the number of occurrences of each character using a loop or HashMap.  
+   Sample Input: "banana"  
+   Output:  
+     b → 1  
+     a → 3  
+     n → 2  
+
+4) Prime Number Range Generator  
+   Description: Take two integers and print all prime numbers between them.  
+   Sample Input: 10, 30  
+   Output: 11 13 17 19 23 29  
+
+5) Digital Root Calculator  
+   Description: Sum digits until a single digit remains.  
+   Sample Input: 987  
+   Output: 6  
+
+   Process:
+   9 + 8 + 7 = 24
+   2 + 4 = 6
+
+
+---------------------------------------------------------------
+CATEGORY 2: ARRAY & COLLECTION BASED PROBLEMS
+---------------------------------------------------------------
+
+6) Sort Names Alphabetically  
+   Description: Read multiple names and sort them using Arrays.sort() or Collections.sort().  
+   Sample Input: ["Zara", "Aman", "John"]  
+   Output: ["Aman", "John", "Zara"]  
+
+7) Find Second Largest Number  
+   Description: Without sorting the array, find the second largest number.  
+   Sample Input: [10, 25, 45, 90, 89]  
+   Output: 89  
+
+8) Remove Duplicate Elements  
+   Description: Remove duplicates from array using HashSet or filtering.  
+   Sample Input: [1, 2, 2, 3, 4, 4, 5]  
+   Output: [1, 2, 3, 4, 5]  
+
+9) Max and Min Finder  
+   Description: Find the highest and lowest value in an integer array.  
+   Sample Input: [35, 14, 67, 9, 68]  
+   Output: Min = 9, Max = 68  
+
+10) Longest Word in Sentence  
+    Description: Determine the longest word from an input sentence.  
+    Sample Input: "hackathon challenge program"  
+    Output: "hackathon"  
+
+
+---------------------------------------------------------------
+CATEGORY 3: LOGIC-BASED CHALLENGES
+---------------------------------------------------------------
+
+11) Perfect Number Checker  
+    Description: A number equal to the sum of its proper divisors.  
+    Sample Input: 28  
+    Output: "Perfect Number"  
+
+12) Balanced Parentheses (Using Stack)  
+    Description: Check whether parentheses are valid and balanced.  
+    Sample Input: "{[()]}"  
+    Output: Balanced  
+
+13) Armstrong Number Checker  
+    Description: For a 3-digit number, sum of cubes of digits equals number.  
+    Sample Input: 153  
+    Output: Armstrong Number  
+
+14) Pattern Printing (Pyramid)  
+    Description: Generate star pattern based on input size.  
+    Sample Input: 4  
+    Output:  
+       *  
+      ***  
+     *****  
+    *******  
+
+15) Missing Number in Sequence  
+    Description: From a sequence 1..N with one missing number, detect missing using logic/Math.  
+    Sample Input: [1, 2, 3, 5]  
+    Output: Missing Number → 4  
+

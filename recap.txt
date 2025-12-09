@@ -10,7 +10,7 @@ recap:-
         @Autowire 
         @Primary 
         @Qualifier,.. 
-  8.bean scope.
+  8.explain bean scope.
   9.what is AOP
   10. Which Java version did you use, and why?
   11. What collections did you use and why? and explain some interface of collection.

@@ -1,0 +1,48 @@
+
+rest crud operation with service layer and custome global exception.
+----------------------------------------------------------------------
+
+1. create a strater project 
+
+2. add dependency. 
+       data jpa. 
+       mysal. 
+       spring web.  (restful web service)
+       lombok.  (for setter and getter)
+       spring boot dev tools
+       
+
+3. create package structure. 
+
+       com.tcs 
+       com.tcs.model 
+       com.tcs.repository 
+       com.tcs.service 
+       com.tcs.controller 
+       com.tcs.exception
+       com.tcs.util  
+
+===========================================================
+  @Component --> configure the bean 
+  @Autowire --> inject the bean 
+
+
+  interface EmployeeService   --> payment
+  {
+
+  }       
+
+  @Service
+  class EmployeeServiceImpl implements EmployeeService   --> upi
+  {
+
+  }
+
+  ========================================================
+
+  class EmployeeController 
+  {
+       @Autowire  //
+       EmployeeService employee;
+
+  }

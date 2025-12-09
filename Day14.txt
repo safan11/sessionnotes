@@ -1,0 +1,170 @@
+Spring Data JPA Query methods:-
+----------------------------------- 
+      
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String name;
+	private String dept;
+	private int age;
+	private double salary;
+
+      findById();
+      findByName(); ----> This is not available.
+
+======================================================================
+
+other than crud operation, if we want to do any other operation, we need to 
+write custome queries. 
+   1. query methods 
+   2. @Query 
+
+query methods:-
+----------------- 
+    In Query Methods, we should be aware of variable names, Spring datajpa , At 
+    runtime, it will generate the query. (Here we have to follow conventions)
+
+
+==================================================================
+(pending things to implement in our app)
+1.@Query (for writing custome query)
+2.ResponseEntity class for sending respone
+3.swagger   (to test the api)
+4. logger. 
+5.junit testing.
+==================================================================
+Swagger:-
+--------- 
+   It is a api documentation.
+
+pom.xml:-
+------------
+
+      <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>2.8.14</version>
+   </dependency>
+
+properties file:-
+-------------------
+springdoc.swagger-ui.path=/swagger-ui.html  
+
+======================================================================
+Product:-
+---------- 
+   ->perform a crud operation with product.  (6 to 7 apis)
+   ->write 2 custome queries. 
+   ->use jpa repository.  
+   -> create two custome exceptions. 
+
+==========================================================================
+jpql query:-
+--------------
+ 
+
+//  Find employees by department (using JPQL)
+	@Query(" SELECT FROM Employee e WHERE e.dept = :deptName")
+	List<Employee> getEmployeesByDept(@Param("deptName") String dept);
+
+	//  Find employees whose age is greater than given value
+	@Query("SELECT e FROM Employee e WHERE e.age > :age")
+	List<Employee> getEmployeesWithAgeGreater(@Param("age") int age);
+
+	//  Find employees with salary sorted in descending order
+	@Query("SELECT e FROM Employee e ORDER BY e.salary DESC")
+	List<Employee> getEmployeesSortedBySalaryDesc();
+	
+   // : Native SQL Query Example
+	@Query(value = "SELECT * FROM emp42 WHERE salary > :salary", nativeQuery = true)
+	List<Employee> getEmployeesWithHighSalary(@Param("salary") double salary);
+   
+=======================================================================
+
+in sql :-
+----------- 
+   select * from employee; 
+   select e1 from Employee e1;
+  
+   select e1.id,e1.name from Employee e1;
+
+=======================================================================
+audit column:-
+---------------  
+   Employee:-
+   ----------- 
+
+   id     name       dept    salary   age   createdDate    updatedDate  isDeleted
+    1      sachin    hr      45000    24    12-dec-2025   12-dec-2025    0  (0/1)
+
+ ===================================================================
+
+ PROJECT: Book Management System (Spring Boot)
+
+PACKAGE STRUCTURE:
+com.tcs.
+ ├── controller
+ │    └── BookController.java
+ ├── service
+      |   BookService.java  (interface)
+ │    └── BookServiceImpl.java (Class)
+ ├── repository
+ │    └── BookRepository.java
+ ├── exception
+ │    ├── BookNotFoundException.java
+ │    ├── DuplicateBookException.java
+ │    ├── GlobalExceptionHandler.java
+ │    └── ErrorResponse.java
+ ├── entity
+ │    └── Book.java
+ └── BookAppApplication.java
+
+
+ENTITY FIELDS:
+Book:
+- id (Long)
+- title (String)
+- author (String)
+- price (Double)
+
+
+FEATURE REQUIREMENTS:
+1. Implement all CRUD operations (Create, Read, Update, Delete) for Book.
+2. Add two query methods in the repository:
+   - findByAuthor(String author)
+   - findByTitleContaining(String keyword)
+3. Create two custom exceptions:
+   - BookNotFoundException → throw when the requested book ID does not exist.
+   - DuplicateBookException → throw when trying to add a book with an existing title.
+4. Implement a Global Exception Handler using @RestControllerAdvice.
+5. Create an ErrorResponse class with the following fields:
+   - message
+   - LocalDateTime timestamp
+   - HttpStatus status
+6. Add simple validation logic:
+   - Before saving, check if title already exists → if yes, throw DuplicateBookException.
+   - Before updating or deleting, verify book exists → if not, throw BookNotFoundException.
+
+
+
+--------------------------------
+ QUESTIONS
+--------------------------------
+
+Q1. Explain how you would design the Book entity and its fields, and how CRUD operations will be handled in the controller and service layers.
+
+Q2. Write and explain the two Spring Data JPA query methods used to search books by author name and keyword in the title.
+
+Q3. Describe when BookNotFoundException and DuplicateBookException should be thrown and why custom exceptions are useful in Spring Boot applications.
+
+Q4. Explain how to implement a Global Exception Handler using @RestControllerAdvice and how it improves error handling consistency across the application.
+
+Q5. Write the structure and purpose of the ErrorResponse class that contains message, timestamp, and HTTP status, and explain how it will be used in exception handling.
+
+Q6. Explain the validation logic used before creating or updating a book, including how duplicate titles and missing records are handled.
+
+Q7. Describe the importance of the layered architecture (Controller, Service, Repository, Exception, Model) and how it improves code maintainability and scalability.
+
+
+
+   

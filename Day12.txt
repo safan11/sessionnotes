@@ -1,0 +1,177 @@
+Spring boot:-
+--------------
+   data jpa. 
+   ---------- 
+   -> In Spring boot, If we use Spring data Jpa, Then this layer becomes 
+    complete abstraction. 
+
+   -> we just need to Provide the Interface, At run time Spring boot 
+   will give the Implementation.   
+
+   -> We have to Create a Interface, and extends With JPARepository 
+   or CrudRpository.  
+
+       eg:-
+       ----- 
+         interface EmployeeRepository  extends JpaRpository (save,findAll,findById)
+         {
+
+         }   
+
+
+layers:-
+--------- 
+    
+    repository          service           Controller
+ 
+
+==================================================================
+
+Steps:-  (to run spring data jpa [only repository layer], )
+------- 
+  1. spring starter project 
+
+  2. add mysql and spring data jpa dependency. 
+
+  3.create the packages , follow base package. 
+      com.tcs 
+      com.tcs.repository  (It provides methods, to interact with database)
+      com.tcs.entity      (model classes)
+
+======================================================================
+General Info:-
+---------------- 
+
+languages:-
+------------- 
+ html,css,bootsrap,.... (frontend)
+ sql,nosql....(database)
+ java,python,.net....(backend)
+ json,xml.... (data transfer)-->(server to server communication).
+
+
+ spring mvc:-  (response data + view ) => @Controller
+ ----------- 
+    mvc 
+
+    m-model ------> (data business logic)
+    v-view   -----> presentation 
+    c-controller  ---> handles the request and response.
+
+   eg:- Bank App
+   ---------------
+     -> cusomer,account,....(data). 
+     
+     ->It takes the request, and call the appropriate controller. 
+    and controller is responsible to manage data + view 
+
+    -> controller is responsible send ==> data + view 
+
+
+    => Controller 
+       ----------- 
+         login controller     ----------
+         cart controller      ----------front controller --- Dispatcher Servlet---
+         product controller   ----------
+
+Note:-
+-------- 
+   The Controller is Responsible to Send the data + along with view
+
+
+ spring restful web service[Restful web Service]:-(API development) [mvc]
+ -------------------------------------------------------------
+   In Restful web Service --> the Controller send the response as 
+   Json format. (no view technology)
+
+
+@Controller --> responsible to send data + view   (spring mvc)
+@RestController --->responsible to send only data (spring restful webservice)
+
+
+
+ ===============================================================   
+Restful web service:-
+--------------------- 
+ REST: Representation State Transfer. 
+       {
+        id:11101 
+        bal:78000      (current state) 
+       }
+
+
+http:-  web protocol  --> found by Tim berners
+------- 
+     -> It founded by the same guy, who founded http, 
+        but rest is not a protocol,it is an architecture 
+        to communicate with server.   
+
+    -> It provides the methods, 
+        like 
+           post --> add the new resource/data
+           get --> reterive the data 
+           put --> update the data 
+           delete --> remove the data 
+
+================================================================
+restapi + data jpa:-
+---------------------- 
+1. create starter project 
+2. select dependency 
+          for database --> data jpa + mysql 
+        for restapi  ---> spring web
+
+
+3.create the package structur, follow base package 
+       
+4. fill the properties file.  
+
+     
+# MySQL Datasource Configuration 
+#connection details
+spring.datasource.url=jdbc:mysql://localhost:3306/tcs?useSSL=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+
+#hibernate jpa properties 
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true 
+
+
+5. entity annotation:-
+   ------------------- 
+      @Entity
+      @Id 
+
+   Controller Annotation:-
+   ------------------------ 
+     @RestController:-  (ability to take the request and send the response)
+     @GetMapping,@PostMapping,....   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Spring web:-
+------------- 
+    
+
+
+
+
+
+
