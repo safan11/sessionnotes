@@ -1,0 +1,289 @@
+Spring Security:-
+--------------------
+
+ web application best practice:-
+ ---------------------------------- 
+    1.multi user login (role based access)--> customer, seller,admin,...
+    2.data should be encrypted in the data base. (secure info should be encrypted)
+    3.data validation. (store only valid data).
+
+
+=====================================================================
+ --> Rest api 
+     ---------- 
+        --> we have made the api,  (now we have to make it secure)
+
+=========================================================================
+
+security config:-
+-----------------
+
+package com.tcs.config;
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SecurityConfig {
+
+    // In-memory user authentication
+    @Bean
+    public UserDetailsService userDetailsService() {
+
+        UserDetails admin = User.withDefaultPasswordEncoder()
+                .username("admin")
+                .password("admin123")
+                .roles("ADMIN")
+                .build();
+
+        UserDetails user = User.withDefaultPasswordEncoder()
+                .username("user")
+                .password("user123")
+                .roles("USER")
+                .build();
+
+        return new InMemoryUserDetailsManager(admin, user);
+    }
+
+    
+    
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        http
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                    .requestMatchers("/api/v1/home", "/api/v1/aboutus").permitAll()
+                    .requestMatchers("/api/v1/addproduct").hasRole("ADMIN")
+                    .requestMatchers("/api/v1/viewallproduct").hasAnyRole("USER","ADMIN")
+                    .anyRequest().authenticated()
+            )
+            .formLogin(Customizer.withDefaults())   // enables login page + session
+            .logout(logout -> logout
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/api/v1/home")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID")
+            );
+
+        return http.build();
+    
+    }
+}
+
+
+-------------- 
+
+package com.tcs.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/v1")
+public class HelloWorldController {
+
+	@GetMapping("/home")
+	public ResponseEntity<String>  home()
+	{
+		String message="this is home page, public any one can access";
+		
+		return new ResponseEntity<String>(message, HttpStatus.OK);
+	}
+	
+	@GetMapping("/aboutus")
+	public String aboutus()
+	{
+		return "this is about us, public any one can access";
+	}
+	
+	@GetMapping("/addproduct")
+	public String addproduct()
+	{
+		return "add product, accessed by only admin";
+	}
+	
+	@GetMapping("/viewallproduct")
+	public String viewallproduct()
+	{
+		return "access by both admin and answer";
+	}
+	
+}
+
+
+=======================================================================
+Microservice:-
+---------------
+
+
+Application architecture:-
+--------------------------- 
+  1. monolythic 
+  2. microservice
+
+
+monolythic:-
+-------------- 
+       application features/service, are developed as a single application. 
+
+       features:-
+       ----------- 
+           login, 
+           register 
+           cart
+           payment 
+           catlog 
+           whistlist 
+           item  
+          (9090)  
+
+dis:-
+------- 
+   ->Single point of failure.
+   ->No load balancing, all the request will handle by single port. 
+   ->Single Technology (either  java/node/.net/......) , single db.
+
+
+Microservice:-
+----------------- 
+   Each features, is developed as a seperate application.  
+
+    features:-
+       ----------- 
+      login,    -------> 9001    ---> java    -----    mysql
+      register   ------> 9002    ---> java    -----    mysql
+      cart       -----> 9003     ---> node    -----    mongodb
+      payment     ---> 9004      ---> java     -----    postgresql
+      catlog      ----> 9005     ---> node
+      whistlist    ----> 9006    ---> .net
+                                  (different tech)  (multiple database)  
+
+adv:-
+------
+  --> load balancing 
+  --> multiple technology, multiple data base. 
+  --> company can manage the resoure (no risk). 
+
+======================================================================
+
+
+1. Microservices is an architecture style where an application is broken into small 
+   independent services.
+2. Each service handles one specific functionality.
+    Example: User Service, Order Service, Payment Service.
+
+3. Each service can run, deploy, scale, or update independently. 
+     (easily new feature can be added,...)
+
+4. Services communicate with each other using REST APIs.
+
+Real-World Example:
+Imagine Amazon.
+User-Service manages users.
+Product-Service manages product inventory.
+Order-Service places orders using user details and product details. 
+
+================================================================================
+2. WHY MICROSERVICES (BENEFITS)
+
+Adv:-
+-------
+
+1. Easy to scale individual services.
+2. Faster development because teams work independently.
+3. Easy to deploy updates without affecting the whole application.
+4. Fault isolation: If one service fails, others keep running.
+5. Technology flexibility: Each service can use different languages or databases.
+
+dis:-
+-----
+1. More services = more complexity.
+2. Requires DevOps knowledge (Docker, Kubernetes).
+3. Harder debugging because services are distributed.
+4. Requires service discovery and monitoring tools.
+
+
+==================================================================================
+
+Spring Boot simplifies creating microservices by providing:
+
+1. Embedded server (Tomcat).
+2. Easy dependency management.  (starter parent dependency)
+3. Auto-configuration.
+4. It makes spring microservices easy.
+   (Integration with Spring Cloud tools like Eureka, Config Server, Gateway)
+
+==================================================================================  
+  -> spring modules, 
+     --------------- 
+       core, aop,web, data, security,cloud  
+                                       | 
+                                     (spring cloud is used to develope microservices).
+
+===================================================================================   
+
+eureka server:-
+----------------- 
+   ->It is called as  discovery server, where all the microservices will register by it self.
+
+
+
+
+
+
+Microservice Communication:-
+------------------------------ 
+     web client:-
+     ----------- 
+
+        User user = webClient.get()
+                .uri("http://localhost:8081/user/" + userId)
+                .retrieve()
+                .bodyToMono(User.class)
+                .block();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

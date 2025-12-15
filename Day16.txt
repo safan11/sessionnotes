@@ -1,0 +1,336 @@
+Day16:-
+---------- 
+   -> why we use collections:-
+    ----------------------------- 
+         ->To Store collection of hetergeneous object. where size is dynamic.
+        -> It has some imbuilt data structure.
+
+Java:-
+------- 
+   what kind of apps, we can develope. 
+      1. desktop -------------->   
+                                  dis:-
+                                  ----- 
+                                      -> no remote access
+                                      -> we should take care about maintance.
+                                   adv:-
+                                   ----- 
+                                      -> without internet we can access.
+     
+      2. web application  --------> (dynamic web application)
+                                    ->data dynamically load from database (instagram,flipkart,...)
+
+
+  
+  ->Servlet:-
+   ------------ 
+       -> we use servlet to create dynamic web application.  
+       -> using java, if we want to create dynamic web application, then we have to 
+       go for servlet.   
+
+       ->By Using servlet it can able to handle the Client request and response. 
+
+===============================================================================
+ Process based:-
+ --------------- 
+     eg:- OS   --> 
+       -> Multiple apps can run, (each apps has it different memory)
+         vscode     eclipse     browser    (different programs runs simultaneously)  
+
+ Thread based:-
+ ---------------    
+     eg:- ms word  --> single program is sub-divinded in to number sub programs 
+                       and they run simultaneously.   
+
+           typing --> thread  1
+           grammer spell check--> thread 2
+           lines count -> thread 3
+           word count --> thread 4           
+
+ 
+ 
+ 
+ ================================================================
+  Client -server architecture:-
+  ------------------------------
+ 
+ Before Servlet, CGI is used to create web application. We have Some drawbacks in 
+ CGI so every one moved to servlet.    
+
+        CGI                                          Servlet 
+     ------------------------------   vs       ---------------------------- 
+    ->   Process based                                Thread Based  
+
+    ->   for each request, a seperate          for each request, it will divided in
+         CGI program will run.                 into thread.
+
+
+    -> when more request, the load will 
+      be heavy which will leads to 
+       crash.
+
+==============================================================================
+Controller:-
+--------------- 
+   ->It is responsible to handle the request the request and response. 
+   
+   -> spring mvc & restful webservice.  
+
+        we have front controller as a DispatcherServlet.  (front office) 
+
+       first The request goes to dispatcher servelt, It will decicide for this 
+       request, which Controller methods to be called. 
+
+============================================================================
+->logger,junit, mockito,spring security:-
+------------------------------------------  
+
+Logger:-
+----------
+   What is Logging?
+
+Logging means recording important information during program execution.
+ It helps developers track what the application is doing, 
+ find issues, and understand failures.
+
+ -> It is used to track the application activity
+
+
+Logging is better than using System.out.println because:
+
+* It supports different log levels. (for message we can have priority )
+* It can be saved to files.
+* It can be turned ON or OFF.
+* It is used in professional applications.
+
+
+logger.info("Message") → Used for general information
+logger.debug("Message") → Used for debugging (disabled by default in production)
+logger.warn("Message") → Warning message
+logger.error("Message") → Error occurred
+logger.trace("Message") → Very detailed information (rarely used). 
+
+=====================================================================
+
+Default log level is info, 
+
+
+Log Levels (Order from Lowest to Highest)
+
+TRACE → Very detailed
+DEBUG → Debugging developer info
+INFO → Normal application messages
+WARN → Something unusual but not breaking
+ERROR → Application failure
+
+
+
+%d{yyyy-MM-dd HH:mm:ss.SSS}: Date and time with millisecond precision.
+[%thread]: Thread name.
+%-5level: Log level (e.g., INFO, DEBUG), left-aligned with a width of 5.
+%logger{36}: Logger name (usually the class name), truncated to 36 characters.
+%msg: The actual log message.
+%n: Newline character.
+
+
+=====================================================================================
+Testing:-
+---------
+  ->developer will do the unit testing. 
+  ->developer will write the functions, every functions has some logic,  
+     using unit testing, we are going to check, weather is working as properly or not 
+
+      ->2+2=4 
+      =>a+b+1> 5 
+
+       2.2+ 2.3=4.5   (double)
+       4  (int)
+
+  junit is a library to perform unit testing in java 
+
+
+====================================================================================
+
+
+JUnit and Mockito Cheat Sheet 
+------------------------------
+
+What is JUnit?
+
+JUnit is a Java testing framework used to write and run tests. It helps verify that code works correctly and helps find bugs early.
+
+---
+
+Common JUnit Annotations
+
+@Test → Marks a method as a test case
+
+@BeforeEach → Runs before every test (setup code)
+
+@AfterEach → Runs after every test
+
+@BeforeAll → Runs once before all tests (static)
+
+@AfterAll → Runs once after all tests
+
+@DisplayName → Adds custom readable test name
+
+---
+
+Common Assertions in JUnit
+
+assertEquals(expected, actual) → Checks both values are equal
+
+assertNotEquals(a, b) → Checks values are different
+
+assertTrue(condition) → Checks condition is true
+
+assertFalse(condition) → Checks condition is false
+
+assertNotNull(object) → Checks object is not null
+
+assertThrows(Exception.class, () -> { code }) → Checks if code throws exception
+
+Example:
+
+@Test
+void testSum() {
+int result = 2 + 3;
+assertEquals(5, result);
+}
+
+---
+
+AAA Pattern (Structure of a Good Test)
+
+Arrange → Prepare data/mocks
+
+Act → Call the method to test
+
+Assert → Compare expected vs actual result
+
+Example:
+
+@Test
+void testMultiply() {
+int a = 5, b = 4; // Arrange
+int result = a * b; // Act
+assertEquals(20, result); // Assert
+}
+
+---
+
+What is Mockito?
+
+Mockito is a mocking framework used to create fake (mock) objects in tests. It allows testing logic without using a real database or external system.
+
+---
+
+Common Mockito Annotations
+
+@Mock → Creates a fake object
+
+@InjectMocks → Injects the fake (mock) object into the class being tested
+
+@ExtendWith(MockitoExtension.class) → Enables Mockito support
+
+@MockBean → Used in Spring Boot MVC tests
+
+---
+
+Mockito "when...thenReturn" Rules
+
+Used to define mock behavior.
+
+Syntax:
+
+when(mock.method()).thenReturn(value);
+
+Example:
+
+when(employeeRepo.findById(1L)).thenReturn(Optional.of(emp));
+
+---
+
+Mockito "verify" Usage
+
+Used to check if a method was called.
+
+Example:
+
+verify(employeeRepo, times(1)).save(emp);
+
+---
+
+Mockito Service Layer Test Example
+
+@ExtendWith(MockitoExtension.class)
+class EmployeeServiceTest {
+
+```
+@Mock
+EmployeeRepository repo;
+
+@InjectMocks
+EmployeeService service;
+
+@Test
+void testSaveEmployee() {
+    Employee e = new Employee(1L, "John", "john@gmail.com");
+
+    when(repo.save(e)).thenReturn(e);
+
+    Employee result = service.saveEmployee(e);
+
+    assertEquals("John", result.getName());
+    verify(repo, times(1)).save(e);
+}
+```
+
+}
+
+---
+
+Difference Between JUnit and Mockito
+
+JUnit → Used to write and run tests
+
+Mockito → Used to mock dependencies and isolate logic
+
+---
+
+Tips for Testing
+
+* Test one method at a time
+* Do not connect to a real database in unit tests
+* Use mocks for dependencies
+* Use assertions to validate results
+* Use verify to ensure method calls happened
+
+---
+
+Summary
+
+JUnit = Testing framework for writing tests
+
+Mockito = Mocking framework for fake objects to avoid real DB or external calls
+
+Together they make unit testing clean and effective.
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+DTO:-
+-------- 
+   Data Transfer Object. 
+
+
+
+int a=10;
+String name="sachin"
+Employee emp;
+
+
+com.tcs.entity. 
+----------------- 
+    @Entity         ---------> map to database table.
+     class Employee
+     {
+         id, name,password,salary,email,dept,createdData,updatedDate,isDeleted,...
+
+
+     }
+
+     
+     class EmployeeDTO 
+     {
+        id,name,email;  //
+     }
+
+Employee  getAllEmployee()
+{
+     return employee();  // all the fields will show.  
+}
+
+========================================================================
+Microservices Communiation:-
+---------------------------- 
+  1. rest template. 
+  2. feign client. 
+  3. web client.
+
+
+
+

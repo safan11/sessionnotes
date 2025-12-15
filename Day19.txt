@@ -1,0 +1,208 @@
+day19.txt
+
+microservice practice:-
+-----------------------
+
+
+To send the response, Spring has ResponseEntity class. 
+
+   --> we send data along with status code
+
+
+==============================================
+
+package com.tcs.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tcs.entity.Employee;
+import com.tcs.exception.InValidAgeException;
+import com.tcs.service.EmployeeService;
+
+@RestController
+@RequestMapping("/api/v2")
+public class EmployeeController2 {
+
+	@Autowired
+	EmployeeService employeeService;
+	
+	@PostMapping("/employee")
+	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) throws InValidAgeException
+	{
+		return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/employee")
+	public ResponseEntity<List<Employee>> viewAllEmployee()
+	{
+		return new ResponseEntity<List<Employee>>(employeeService.getAllEmployee(), HttpStatus.OK);
+	}
+	
+}
+
+
+======================================
+
+mockito:-
+------------
+
+package com.tcs;
+
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.tcs.entity.Employee;
+import com.tcs.exception.IdNotFoundException;
+import com.tcs.exception.InValidAgeException;
+import com.tcs.repository.EmployeeRepository;
+import com.tcs.service.EmployeeServiceImpl;
+
+@ExtendWith(MockitoExtension.class)
+class EmployeeServiceTest {
+
+    @Mock
+    private EmployeeRepository employeeRepository;
+
+    @InjectMocks
+    private EmployeeServiceImpl employeeService;
+
+    // ------------------- addEmployee -------------------
+
+    @Test
+    void addEmployee_success() throws InValidAgeException {
+        Employee emp = new Employee(1, "Rahul", "IT", 50000, 25);
+
+        when(employeeRepository.save(emp)).thenReturn(emp);
+
+        Employee savedEmployee = employeeService.addEmployee(emp);
+
+        assertNotNull(savedEmployee);
+        assertEquals("Rahul", savedEmployee.getName());
+        verify(employeeRepository, times(1)).save(emp);
+    }
+
+    @Test
+    void addEmployee_invalidAge_exception() {
+        Employee emp = new Employee(1, "Rahul", "IT", 50000, 20);
+
+        assertThrows(InValidAgeException.class, () -> {
+            employeeService.addEmployee(emp);
+        });
+
+        verify(employeeRepository, never()).save(any());
+    }
+
+    // ------------------- getAllEmployee -------------------
+
+    @Test
+    void getAllEmployee_success() {
+        Employee emp1 = new Employee(1, "A", "IT", 40000, 25);
+        Employee emp2 = new Employee(2, "B", "HR", 45000, 26);
+
+        when(employeeRepository.findAll()).thenReturn(Arrays.asList(emp1, emp2));
+
+        List<Employee> employees = employeeService.getAllEmployee();
+
+        assertEquals(2, employees.size());
+        verify(employeeRepository, times(1)).findAll();
+    }
+
+    // ------------------- getEmployeeById -------------------
+
+    @Test
+    void getEmployeeById_success() throws IdNotFoundException {
+        Employee emp = new Employee(1, "Rahul", "IT", 50000, 25);
+
+        when(employeeRepository.findById(1)).thenReturn(Optional.of(emp));
+
+        Employee result = employeeService.getEmployeeById(1);
+
+        assertEquals("Rahul", result.getName());
+        verify(employeeRepository, times(1)).findById(1);
+    }
+
+    @Test
+    void getEmployeeById_notFound_exception() {
+        when(employeeRepository.findById(1)).thenReturn(Optional.empty());
+
+        assertThrows(IdNotFoundException.class, () -> {
+            employeeService.getEmployeeById(1);
+        });
+    }
+
+    // ------------------- deleteEmployeeById -------------------
+
+    @Test
+    void deleteEmployeeById_success() throws IdNotFoundException {
+        when(employeeRepository.existsById(1)).thenReturn(true);
+        doNothing().when(employeeRepository).deleteById(1);
+
+        String result = employeeService.deleteEmployeeById(1);
+
+        assertEquals("employee with the id :1 is deleted", result);
+        verify(employeeRepository, times(1)).deleteById(1);
+    }
+
+    @Test
+    void deleteEmployeeById_notFound_exception() {
+        when(employeeRepository.existsById(1)).thenReturn(false);
+
+        assertThrows(IdNotFoundException.class, () -> {
+            employeeService.deleteEmployeeById(1);
+        });
+
+        verify(employeeRepository, never()).deleteById(anyInt());
+    }
+
+    // ------------------- updateEmployeeById -------------------
+
+    @Test
+    void updateEmployeeById_success() throws IdNotFoundException {
+        Employee existing = new Employee(1, "Old", "IT", 40000, 25);
+        Employee updated = new Employee(1, "New", "HR", 60000, 28);
+
+        when(employeeRepository.findById(1)).thenReturn(Optional.of(existing));
+        when(employeeRepository.save(any(Employee.class))).thenReturn(existing);
+
+        Employee result = employeeService.updateEmployeeById(1, updated);
+
+        assertEquals("New", result.getName());
+        assertEquals("HR", result.getDept());
+        assertEquals(60000, result.getSalary());
+        assertEquals(28, result.getAge());
+
+        verify(employeeRepository, times(1)).save(existing);
+    }
+
+    @Test
+    void updateEmployeeById_notFound_exception() {
+        Employee emp = new Employee();
+
+        when(employeeRepository.findById(1)).thenReturn(Optional.empty());
+
+        assertThrows(IdNotFoundException.class, () -> {
+            employeeService.updateEmployeeById(1, emp);
+        });
+    }
+}
