@@ -1,0 +1,25 @@
+Day20:-
+--------
+
+
+git, jwt,  
+
+angular 
+=========================
+Project:-
+----------  
+     ecommerce
+     hotel booking 
+     flight booking 
+     movie booking 
+     cab booking 
+     courier service 
+     online quiz system
+   
+9.15 to 10:-
+-------------- 
+    -> microservice architecture.  
+        (make some document)
+
+
+https://javatechonline.com/implement-api-gateway-spring-boot-microservices/#google_vignette

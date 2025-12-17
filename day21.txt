@@ -1,0 +1,37 @@
+jwt token:-
+------------- 
+
+
+->Client and server use http protocol. 
+
+->protocol are two types, 
+     1. stateless   (http is stateless protocol)
+     2. statefull 
+
+Http is stateless protocol, the server does not remember the user, each request 
+will take as a new request.  
+
+
+session:-
+---------- 
+     It is nothing but Particular interval time, where it remeber the user.  
+     (from login to logout). 
+
+======================================================================
+
+Authentication, Authorization
+
+
+=======================================================================
+
+
+
+
+
+
+
+
+
+
+
+
