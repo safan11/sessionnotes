@@ -24,6 +24,132 @@ Authentication, Authorization
 
 =======================================================================
 
+dependency:-
+-------------- 
+  ->web 
+  -> security 
+  -> jwt  
+     <dependency>
+   <groupId>io.jsonwebtoken</groupId>
+   <artifactId>jjwt-api</artifactId>
+   <version>0.11.5</version>
+</dependency>
+<dependency>
+   <groupId>io.jsonwebtoken</groupId>
+   <artifactId>jjwt-impl</artifactId>
+   <version>0.11.5</version>
+   <scope>runtime</scope>
+</dependency>
+<dependency>
+   <groupId>io.jsonwebtoken</groupId>
+   <artifactId>jjwt-jackson</artifactId>
+   <version>0.11.5</version>
+   <scope>runtime</scope>
+</dependency>
+======================================================================
+SDLC:-
+--------
+Stages of SDLC:-
+--------------------
+   requirement gathering 
+   feasiblity study (planning)
+   design 
+   coding 
+   testing 
+   deployment 
+   maintance
+    
+
+waterfall   vs    agile
+----------------------------
+
+Waterfall:-
+------------- 
+   -> It is a step by step process,
+   -> after completeing each stage then only it will go to other stage. 
+
+disadv:-
+---------- 
+   ->changes cannot be accepted. (all the requiremnt should be define at first).
+   -> client can see the demo only after complete all stages.
+
+ when to use waterfall model:-
+ ---------------------------- 
+    when the requirement clearly specified, 
+     eg:-
+     ---- 
+       Notepad app, alaram app. 
+
+
+
+
+Agile:-
+--------- 
+    ->Iterative incremental software development model.
+    
+ecommerce-features:-
+---------------------
+   item 
+   cart 
+   payment 
+   whistlist 
+   order 
+   user 
+   catalog 
+   offers 
+    
+ -> developing the software in an incremental way, and get take regular feedback 
+  from the client.   initially develope the core features. 
+
+  -> In Agile the software the develop using sprint. 
+  -> sprint is nothing but particular duration of time 
+     particulary 2 to 4 weeks
+  -> inside each sprint a working piece of software functinality/feature 
+     is developed and it is reviewed from the client.   
+
+
+agile cernomics 
+roles in agile.       
+
+======================================================================
+devops:-
+--------- 
+   ->why we need it..?
+
+   ->some of the tools of devops..?
+
+======================================================================
+linux commands:-
+----------------- 
+     
+=======================================================================
+Git:-
+------ 
+   -> It is founded by Linux torvald (the same guy , who found linux.)
+   -> It is a distributed version control system. 
+   -> It is used to colloboration.
+
+
+repository:-
+------------
+    (source code)
+
+===================================================================
+workspace ---> all the files and folder, 
+staging  ---> 
+local repository --> where the files are tracked in local system. the files are commit in local
+remote repository
+
+===================================================================
+
+https://github.com/XD-DENG/SQL-exercise/tree/master
+
+====================================================================
+
+
+
+
+
 
 
 

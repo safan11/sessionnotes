@@ -1,0 +1,268 @@
+Sql:-
+------
+   ->In Sql , the data are stored in the form of table, table will 
+   have some kind of relationship.
+
+   ->Normilization rules says that the table should be in relationship,
+   to remove the data redundancy. 
+    
+
+ what happens when tables are not in relationship:-
+ ---------------------------------------------------- 
+   if we store Every thing  in single table, which create data redundancy, 
+    and i have 3 problem
+          -> insert problem 
+          -> update problem 
+          -> delete problem    
+
+  eg:-
+  ---- 
+     without normilization 
+
+  Employee 
+  ------------ 
+     id     name     age    salary     deptid    deptname   location manager   
+      1    sachin   30      45000       100       hr        btm     kumar 
+      2    sourab   30      60000       100       hr        btm     kumar 
+      3    vamshi    32     67000       100       hr        btm     kumar 
+      4     praveen  27     80000       101      developer  hsr     ankit 
+
+  insert problem --> to add employee we need to add an extra information.eg: dept 
+  update problem --> to update manager name, it will update in multiple rows. 
+  delete problem --> when we delete employee , it delete dept as well, 
+                     if all the employee deletes , then there is no 
+                     dept exists. 
+================================================================================
+SQL:-
+------ 
+   ->Structred Query langauge 
+   ->Initial name of SQL is SEQUEL (Structred English Query Language)
+   -> It is a command based language, Every commands has meaning. 
+
+
+SQL Sub Langugae:-
+-----------------------  
+   DDL 
+   DML 
+   DQL 
+   TCL 
+   DCL 
+
+DDL:-
+------ 
+   It is all about table structure.  
+    (dr.cat)
+
+    d-drop 
+    r-rename 
+    c-create 
+    a-alter 
+             alter add 
+             alter drop 
+             alter modify 
+             alter rename 
+    t-truncate 
+
+    SQL conntraint
+
+DML:-
+----- 
+    It is all about insert, update, delete. 
+
+DQL:-
+------ 
+   Select 
+       -> operators 
+       -> sql clauses 
+             where 
+             order by 
+             group by 
+             having 
+       -> sub queries 
+       -> joins 
+       -> sql functions          
+
+
+ TCL:-   (ACID)
+ -----
+   Transcation Control Language.   
+
+   Transaction:-
+   -------------- 
+     nothing but set of sql statement. 
+    
+
+commit 
+rollback 
+savepoint       
+
+
+
+DCL:-
+------ 
+   grant --> giving the access 
+   revoke --> take out the access.
+================================================================
+operator:-
+------------ 
+   -> arithmetic  +,-,*, /
+   -> relational   >,<,>=,<=,=,!=,
+   -> logical 
+          and , or , not, in, any,all, like , between
+
+
+
+ Sql clauses:-
+ --------------- 
+        where ---> filter the rows based on condition
+        group by --> for similar records, we can make it in to one group,
+                     after grouping we need to use some aggregate functions.
+                       sum,min,max,count
+
+                    Note:-
+                    ------ 
+                      when ever we do group by, we can call only aggregate column. 
+                         salary --> normal column 
+                         sum(salary)--> aggregate column
+        having 
+        order by 
+
+id,name,salary,age, dept   
+================================================================================
+Sub queries:-
+--------------- 
+   ->Query inside another query. 
+
+   ->if we want to find the employee whose salary > 50000 
+       select * from employee where salary > 50000       (single query is fine)
+
+    -> if we want to find the employee whose salary is greater than sachin, 
+        to find sachin salary we need to write nested query.
+
+    syntax:-
+    ---------- 
+       outer query     // second execution
+       (
+          inner query    // first execution
+       )
+
+        first inner query is executed, the output of inner query is used by 
+        outer query. 
+
+        types of subquery:-
+        ----------------- 
+         1. single row sub query.  (the inner returns single row as a output) 
+         2. multi row sub query. (the inner query returns more than one row as a output)
+                                   in,any,all  
+
+1,2..10
+                                where id in (1,2,3,10,11,13)     --> 1,2,3,10
+                                where id > all (3,8,4)           -->  9,10 
+                                where id > any (3,8,4)           ---> 4,5,..10 
+
+
+==============================================================================
+joins:-
+----------
+by using joins we can reterive the data from different tables.
+with the help of common column, we can able to reterive the data. 
+eg:-
+----- 
+   deptid (f.k)
+
+types of join:-
+--------------- 
+  inner 
+  outer 
+     left outer 
+     right outer 
+     full outer   (in mysql it is supported using union)    
+  cross join 
+  self join   
+
+======================================================================
+Frontend:-
+---------- 
+internet 
+www   
+web 
+
+html,css,js,bootstrap, typescript,  
+Angular. 
+
+==========================================================
+html css javascript 
+------------------------
+ html:-
+ -------- 
+     -> It is the building block of web page. 
+     -> skeleton  
+     -> page structure 
+
+
+css:-
+------- 
+   styling 
+
+javascript:-
+------------
+   we can design interactive web page.
+
+==========================================================
+html form control:-
+---------------------
+
+==========================================================
+css:-
+-------  
+   refer cheetsheet,
+   properties-> background,border,text,font,..... 
+   box model, (flex and grid, media query) 
+
+======================================================= 
+
+Bootstrap:-
+-----------
+  adv:-
+  ----- 
+      ->grid system.
+      ->responsive web page
+
+ =========================================     
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

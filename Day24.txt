@@ -1,0 +1,27 @@
+Data binding:-
+--------------- 
+   
+ Data binding connects component data with the template. 
+    component-> .ts 
+    template-> html 
+
+Angular supports four types of data binding.
+It keeps UI and logic synchronized automatically.
+Reduces manual DOM manipulation.
+Used in almost every Angular application. 
+
+ 
+ {{}}   --> String interpolation
+ []     --> property binding 
+ ()     --> event binding 
+ [()]    --> two way data binding (property binding + event binding)
+             (banana in a box). 
+
+=====================================================
+Data binding:- all about connecting html and ts file 
+Directive :- structure of html element, 
+
+============================================
+
+Directives modify DOM behavior or appearance.
+Structural directives change DOM structure.

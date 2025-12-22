@@ -1,0 +1,86 @@
+--------------------------------------------------
+Angular Coding Practice
+--------------------------------------------------
+
+Question Title: Product Inventory Status
+
+
+Important Instructions:
+- You may choose ONE of the following approaches:
+  1. Implement everything directly in AppComponent
+     (app.component.ts and app.component.html)
+     OR
+  2. Create a separate component (e.g., ProductInventoryComponent)
+     and call/use it inside AppComponent.
+
+- The files provided are:
+  - app.component.ts
+  - app.component.html
+- If you create an additional component, it must be properly
+  declared and used inside AppComponent.
+
+
+Problem Description:
+Create a simple Product Inventory feature using Angular that demonstrates
+basic Angular concepts such as data binding, conditional rendering,
+and list rendering.
+
+
+Concepts to Demonstrate:
+- Data Binding (Interpolation)
+- Conditional Rendering using *ngIf
+- List Rendering using *ngFor
+- Basic event handling (click event)
+- Component to template data flow
+
+
+Requirements:
+1. Define the following variables in the component class:
+   - storeName (string)
+   - isStoreOpen (boolean)
+   - products (array of strings)
+
+2. Display the store name in the template using interpolation.
+
+3. Display a message based on store status:
+   - If isStoreOpen is true, display: "Store is Open"
+   - If isStoreOpen is false, display: "Store is Closed"
+
+4. Display the list of products using *ngFor.
+
+5. If the products list is empty, display the message:
+   - "No products available"
+
+6. Add a button to toggle the store status
+   (Open ↔ Closed).
+
+7. Display the total number of products available.
+
+8. Add a button to clear all products from the list and
+   verify conditional rendering when the list becomes empty.
+
+
+Sample Data:
+storeName = 'Smart Electronics';
+isStoreOpen = true;
+products = ['Laptop', 'Mobile', 'Headphones'];
+
+
+Expected UI Behavior:
+- Store name should be displayed on the screen.
+- Store status message should change based on isStoreOpen value.
+- Products should be displayed as a list.
+- Total number of products should be shown.
+- When products array is empty, show:
+  "No products available".
+- Clicking the toggle button should change the store status.
+- Clicking the clear button should remove all products.
+
+
+Evaluation Criteria:
+- Correct usage of interpolation
+- Proper use of *ngIf for conditional rendering
+- Proper use of *ngFor for list rendering
+- Correct event handling using (click)
+- Clean and readable code structure
+- Proper component usage if an additional component is created

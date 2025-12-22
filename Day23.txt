@@ -1,0 +1,43 @@
+js 
+typescript 
+
+========================================
+Angular:-
+-----------------
+
+SPA (Single Page Application). 
+   the entire page will not reload, only the specife section data will change. 
+
+Angular is a component based architecture.
+
+Component:-
+------------ 
+  A component is a Piece of of UI in the web page. 
+
+
+React    vs    Angualar 
+-------        --------- 
+facebook         google 
+
+spa              spa 
+
+use vrtual       uses the real dom
+doe
+
+library           framework
+(for UI)          (It has necessary librbary)  (set of library)
+                 
+                  It has CLI.
+
+==================================================================
+Angular <==> ng 
+=======================================================
+   cd demo1 
+   npm i 
+   ng serve   
+
+=================================   
+Angular Data Binding:-
+----------------------- 
+    (ts --- html)
+    (html--- ts)
