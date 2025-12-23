@@ -7,7 +7,7 @@ A **Modular Monolith** is:
 * **Deployed as a single unit**
 * But **internally structured as independent services/modules**
 
-👉 Each module behaves like a **mini-microservice** inside the monolith.
+ Each module behaves like a **mini-microservice** inside the monolith.
 
 ---
 
@@ -216,11 +216,11 @@ public class UserServiceImpl implements UserService {
 | `order` package      | `order-service`      |
 | Internal method call | REST / Feign call    |
 
-👉 You just **cut the package and move it** to a new Spring Boot project.
+ You just **cut the package and move it** to a new Spring Boot project.
 
 ---
 
-## 8️⃣ Interview Answer (Short & Professional)
+## 8️⃣ Interview Answer 
 
 > *“In Spring Boot monolithic applications, we follow a modular monolith approach where each business domain like user, product, or order is structured as an independent package containing controller, service, repository, entity, and DTO layers. This provides clear separation of concerns, improves maintainability, and allows easy migration to microservices in the future without changing business logic.”*
 
