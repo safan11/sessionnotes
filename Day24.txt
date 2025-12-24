@@ -25,3 +25,329 @@ Directive :- structure of html element,
 
 Directives modify DOM behavior or appearance.
 Structural directives change DOM structure.
+
+====================================================
+how to add bootstarp into angular:-
+-------------------------------------
+ step 1:-
+ ------- 
+    npm install bootstarp 
+
+ step 2:-
+ -------- 
+    Add Bootstrap CSS to angular.json
+"styles": [
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "src/styles.css"
+]   
+
+
+
+=======================================================
+
+Below is a **complete beginner-friendly `.txt` style guide** for **Angular Standalone App Routing**, written step-by-step with **CLI commands, explanations, and testing steps**.
+(Aligned with Angular 15+ standalone architecture)
+
+---
+
+```
+ANGULAR STANDALONE APP ROUTING – 
+==================================================
+
+Prerequisites
+-------------
+1. Node.js (LTS version recommended)
+2. Angular CLI installed
+
+Check versions:
+---------------
+node -v
+npm -v
+ng version
+
+If Angular CLI is not installed:
+--------------------------------
+npm install -g @angular/cli
+
+
+STEP 1: CREATE ANGULAR STANDALONE APP
+------------------------------------
+Angular standalone apps do NOT use NgModule.
+
+Command:
+--------
+ng new standalone-routing-app --standalone --routing --style=css
+
+Explanation:
+------------
+--standalone  -> creates standalone components
+--routing     -> creates routing configuration
+--style=css   -> uses CSS for styling
+
+Go to project folder:
+---------------------
+cd standalone-routing-app
+
+
+STEP 2: RUN THE APPLICATION
+---------------------------
+Command:
+--------
+ng serve
+
+Open browser:
+-------------
+http://localhost:4200
+
+You should see the default Angular welcome page.
+
+
+STEP 3: UNDERSTAND PROJECT STRUCTURE
+------------------------------------
+src/
+ ├── app/
+ │   ├── app.component.ts
+ │   ├── app.config.ts
+ │   ├── app.routes.ts
+ ├── main.ts
+
+Important files:
+----------------
+main.ts        -> bootstraps the app
+app.config.ts -> provides routing configuration
+app.routes.ts -> defines routes
+
+
+STEP 4: CREATE COMPONENTS FOR ROUTING
+-------------------------------------
+We will create:
+1. HomeComponent
+2. AboutComponent
+3. ContactComponent
+
+Commands:
+---------
+ng generate component pages/home --standalone
+ng generate component pages/about --standalone
+ng generate component pages/contact --standalone
+
+
+STEP 5: CONFIGURE ROUTES
+-----------------------
+Open file:
+-----------
+src/app/app.routes.ts
+
+Code:
+-----
+import { Routes } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+
+export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: '**', redirectTo: '' }
+];
+
+Explanation:
+------------
+''        -> default route (Home)
+about     -> About page
+contact   -> Contact page
+**        -> wildcard route (redirects unknown URLs)
+
+
+STEP 6: ENABLE ROUTING IN APP CONFIG
+-----------------------------------
+Open:
+------
+src/app/app.config.ts
+
+Code:
+-----
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes)
+  ]
+};
+
+Explanation:
+------------
+provideRouter() replaces RouterModule.forRoot()
+Used only in standalone apps
+
+
+STEP 7: ADD ROUTER OUTLET
+------------------------
+Open:
+------
+src/app/app.component.ts
+
+Code:
+-----
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  template: `
+    <h1>Angular Standalone Routing</h1>
+
+    <nav>
+      <a routerLink="">Home</a> |
+      <a routerLink="about">About</a> |
+      <a routerLink="contact">Contact</a>
+    </nav>
+
+    <hr />
+
+    <router-outlet></router-outlet>
+  `
+})
+export class AppComponent {}
+
+Explanation:
+------------
+RouterOutlet -> displays routed components
+routerLink   -> navigation without page reload
+
+
+STEP 8: ADD CONTENT TO COMPONENTS
+--------------------------------
+
+Home Component:
+---------------
+src/app/pages/home/home.component.ts
+
+template:
+---------
+<h2>Home Page</h2>
+<p>Welcome to Home Page</p>
+
+
+About Component:
+----------------
+<h2>About Page</h2>
+<p>This is About Page</p>
+
+
+Contact Component:
+------------------
+<h2>Contact Page</h2>
+<p>This is Contact Page</p>
+
+
+STEP 9: TEST ROUTING (MANUAL TESTING)
+------------------------------------
+
+1. Run the app:
+---------------
+ng serve
+
+2. Open browser:
+----------------
+http://localhost:4200
+
+3. Click links:
+---------------
+Home    -> /
+About   -> /about
+Contact -> /contact
+
+4. Test direct URLs:
+--------------------
+http://localhost:4200/about
+http://localhost:4200/contact
+
+5. Test invalid route:
+----------------------
+http://localhost:4200/xyz
+
+Expected result:
+----------------
+Redirects to Home page
+
+
+STEP 10: ROUTING TEST USING CLI BUILD
+------------------------------------
+Command:
+--------
+ng build
+
+Explanation:
+------------
+Ensures routing configuration is valid
+Build should succeed without errors
+
+
+STEP 11: OPTIONAL – ROUTER LINK ACTIVE
+-------------------------------------
+Modify navigation links:
+
+<a routerLink="" routerLinkActive="active">Home</a>
+<a routerLink="about" routerLinkActive="active">About</a>
+<a routerLink="contact" routerLinkActive="active">Contact</a>
+
+Add CSS:
+--------
+.active {
+  font-weight: bold;
+  color: blue;
+}
+
+
+SUMMARY
+-------
+✔ Created Angular standalone app
+✔ Configured routing without NgModule
+✔ Used provideRouter()
+✔ Tested routing manually and via build
+✔ Followed Angular modern architecture
+
+======================================================
+
+using http modules, load the data from dummy server and display 
+in angular component, --> use ngFor to print.  
+
+   from -> json place holder. 
+
+=========================================================
+Promise. 
+   -> future task.
+
+
+httpClient
+------------- 
+    http methods, 
+       get   ---> observable
+       post 
+       put 
+
+
+ when ever we call  any http methods, it gives observable.  ==> 
+    to take from observable we can use .subscribe method. 
+
+=========================================================================
+
+
+@CrossOrigin 
+@RestController
+class EmployeeController 
+{
+
+
+}
+  
+  //getallemployee -> url you can call
+
+
+
