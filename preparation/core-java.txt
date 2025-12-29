@@ -1,0 +1,526 @@
+========================================
+CORE JAVA – INTERVIEW QUESTIONS & ANSWERS
+========================================
+
+
+====================================
+MODULE 1: JAVA FUNDAMENTALS (20 Q&A)
+====================================
+
+1. What is Java?
+- Java is a high-level, object-oriented programming language.
+- It is platform-independent using JVM.
+- It is widely used for web, enterprise, and mobile applications.
+
+2. Why is Java platform-independent?
+- Java code is compiled into bytecode.
+- Bytecode runs on JVM, not directly on OS.
+- JVM is available for different platforms.
+
+3. What is JVM?
+- JVM executes Java bytecode.
+- It manages memory and garbage collection.
+- It provides security and platform independence.
+
+4. What is JDK?
+- JDK is used to develop Java applications.
+- It contains JRE and development tools.
+- Tools include javac, debugger, and compiler.
+
+5. What is JRE?
+- JRE is used to run Java programs.
+- It contains JVM and core libraries.
+- It does not include development tools.
+
+6. What are access modifiers?
+- They control visibility of classes and members.
+- Types: public, private, protected, default.
+- Used for data security and encapsulation.
+
+7. Difference between == and equals()?
+- == compares memory references.
+- equals() compares object values.
+- equals() can be overridden.
+
+8. What are variables in Java?
+- Variables store data in memory.
+- Types: local, instance, static.
+- Scope depends on variable type.
+
+9. What is static keyword?
+- static members belong to class.
+- Shared among all objects.
+- Memory allocated once.
+
+10. What is final keyword?
+- final variable becomes constant.
+- final method cannot be overridden.
+- final class cannot be inherited.
+
+11. What is constructor?
+- Used to initialize objects.
+- Same name as class.
+- No return type.
+
+12. Can constructors be overloaded?
+- Yes, multiple constructors allowed.
+- Must differ in parameters.
+- Improves flexibility.
+
+13. What is this keyword?
+- Refers to current object.
+- Used to resolve variable ambiguity.
+- Used to call current class constructor.
+
+14. Default value of int?
+- Default value is 0.
+- Applies to instance variables.
+- Not applicable to local variables.
+
+15. Default value of object reference?
+- Default value is null.
+- Indicates no object assigned.
+- Applies only to instance variables.
+
+16. What is type casting?
+- Converting one data type to another.
+- Can be implicit or explicit.
+- Used for compatibility.
+
+17. Implicit vs Explicit casting?
+- Implicit is automatic conversion.
+- Explicit is manual conversion.
+- Explicit may cause data loss.
+
+18. What is main method?
+- Entry point of Java program.
+- JVM starts execution from main.
+- Defined as public static void main.
+
+19. Why main method is static?
+- JVM can call it without object.
+- Static belongs to class.
+- Improves startup efficiency.
+
+20. What is garbage collection?
+- Automatic memory management.
+- Removes unused objects.
+- Managed by JVM.
+
+21. Why is Java considered secure?
+- Java does not allow direct memory access.
+- Uses bytecode verification.
+- Provides security manager and JVM sandbox.
+
+22. Why are local variables not given default values?
+- To avoid usage of uninitialized variables.
+- Forces programmer to initialize explicitly.
+- Improves code safety.
+
+23. Scenario: You want one copy of a variable shared across all objects. What will you use?
+- Use static variable.
+- Static variables belong to class.
+- Memory allocated only once.
+
+24. Why String is immutable in Java?
+- Improves security.
+- Supports caching in String pool.
+- Thread-safe by default.
+
+25. Scenario: You want to restrict inheritance of a class. What will you do?
+- Declare class as final.
+- Final class cannot be extended.
+- Improves design control.
+
+
+=========================
+MODULE 2: OOPS (20 Q&A)
+=========================
+
+1. What is OOPS?
+- Programming based on objects.
+- Improves code reusability.
+- Makes system modular.
+
+2. Four pillars of OOPS?
+- Encapsulation
+- Inheritance
+- Polymorphism
+- Abstraction
+
+3. What is a class?
+- Blueprint of an object.
+- Contains variables and methods.
+- Does not occupy memory.
+
+4. What is an object?
+- Instance of a class.
+- Represents real-world entity.
+- Occupies memory.
+
+5. What is encapsulation?
+- Wrapping data and methods together.
+- Achieved using private variables.
+- Improves security.
+
+6. How is encapsulation achieved?
+- By making variables private.
+- Using getters and setters.
+- Restricts direct access.
+
+7. What is inheritance?
+- Acquiring properties of parent class.
+- Achieved using extends keyword.
+- Promotes code reuse.
+
+8. What is polymorphism?
+- One method, many forms.
+- Improves flexibility.
+- Supports dynamic behavior.
+
+9. Types of polymorphism?
+- Compile-time (overloading).
+- Runtime (overriding).
+- Based on method behavior.
+
+10. What is method overloading?
+- Same method name.
+- Different parameters.
+- Compile-time polymorphism.
+
+11. What is method overriding?
+- Same method signature.
+- Parent-child relationship.
+- Runtime polymorphism.
+
+12. What is abstraction?
+- Hiding implementation details.
+- Showing only functionality.
+- Improves design clarity.
+
+13. How is abstraction achieved?
+- Using abstract classes.
+- Using interfaces.
+- Helps loose coupling.
+
+14. Abstract class vs Interface?
+- Abstract class can have methods with body.
+- Interface supports multiple inheritance.
+- Interface methods are public by default.
+
+15. Can we create object of abstract class?
+- No, cannot instantiate.
+- Used as base class.
+- Must be extended.
+
+16. What is interface?
+- Blueprint of class.
+- Contains abstract methods.
+- Used to achieve multiple inheritance.
+
+17. What is multiple inheritance?
+- Inheriting from multiple classes.
+- Not supported directly in Java.
+- Achieved using interfaces.
+
+18. What is super keyword?
+- Refers to parent class object.
+- Used to call parent constructor.
+- Access parent methods.
+
+19. What is IS-A relationship?
+- Represents inheritance.
+- Uses extends keyword.
+- Example: Dog IS-A Animal.
+
+20. What is HAS-A relationship?
+- Represents association.
+- Uses object reference.
+- Example: Car HAS-A Engine.
+
+
+21. Why is encapsulation important?
+- Protects data from direct access.
+- Improves maintainability.
+- Allows controlled modification.
+
+22. Scenario: You want to reuse code and also add new behavior. Which concept is used?
+- Inheritance is used.
+- Child class extends parent.
+- Avoids code duplication.
+
+23. Why Java does not support multiple inheritance with classes?
+- Avoids ambiguity problem.
+- Diamond problem is prevented.
+- Improves clarity.
+
+24. Scenario: You want different behavior for same method in child class. What concept is used?
+- Method overriding.
+- Runtime polymorphism.
+- Achieved using inheritance.
+
+25. Why interfaces are preferred over abstract classes in design?
+- Supports multiple inheritance.
+- Promotes loose coupling.
+- Used in framework-based design.
+
+
+=====================================
+MODULE 3: EXCEPTION HANDLING (20 Q&A)
+=====================================
+
+1. What is exception?
+- Runtime error condition.
+- Disrupts normal flow.
+- Occurs during execution.
+
+2. What is exception handling?
+- Managing runtime errors.
+- Prevents program crash.
+- Improves reliability.
+
+3. Types of exceptions?
+- Checked exceptions.
+- Unchecked exceptions.
+- Errors.
+
+4. Checked exceptions?
+- Checked at compile time.
+- Must be handled.
+- Example: IOException.
+
+5. Unchecked exceptions?
+- Occur at runtime.
+- Not mandatory to handle.
+- Example: NullPointerException.
+
+6. What is try block?
+- Contains risky code.
+- Must be followed by catch/finally.
+- Cannot exist alone.
+
+7. What is catch block?
+- Handles exceptions.
+- Executes when exception occurs.
+- Can have multiple catches.
+
+8. What is finally block?
+- Always executes.
+- Used for cleanup.
+- Executes even if exception occurs.
+
+9. Multiple catch blocks?
+- Yes, allowed.
+- Order matters.
+- Child before parent.
+
+10. Can try exist without catch?
+- Yes, with finally.
+- Used for resource cleanup.
+- Catch is optional.
+
+11. What is throw keyword?
+- Used to throw exception explicitly.
+- Used inside method.
+- Throws one exception.
+
+12. What is throws keyword?
+- Declares exception.
+- Used in method signature.
+- Can declare multiple exceptions.
+
+13. throw vs throws?
+- throw throws exception.
+- throws declares exception.
+- throw inside method, throws in signature.
+
+14. What is custom exception?
+- User-defined exception.
+- Extends Exception class.
+- Used for business logic.
+
+15. How to create custom exception?
+- Extend Exception or RuntimeException.
+- Create constructor.
+- Throw using throw keyword.
+
+16. What is stack trace?
+- Error details.
+- Shows method call sequence.
+- Helps debugging.
+
+17. NullPointerException?
+- Accessing null reference.
+- Common runtime exception.
+- Avoid using null checks.
+
+18. ArithmeticException?
+- Arithmetic error occurs.
+- Example: divide by zero.
+- Runtime exception.
+
+19. Can finally block stop execution?
+- No, it cannot stop execution.
+- Always executes.
+- Except System.exit().
+
+20. Unhandled exception?
+- Program terminates abnormally.
+- JVM prints stack trace.
+- Execution stops.
+
+21. Why exception handling is important?
+- Prevents abnormal termination.
+- Improves user experience.
+- Makes application reliable.
+
+22. Scenario: Database code throws SQLException. How will you handle it?
+- Use try-catch block.
+- Or declare using throws.
+- Perform proper cleanup.
+
+23. Why checked exceptions must be handled?
+- Checked at compile time.
+- Forces error handling.
+- Improves robustness.
+
+24. Scenario: You want to create business-rule error like “InvalidAgeException”. What will you do?
+- Create custom exception.
+- Extend Exception class.
+- Throw using throw keyword.
+
+25. Why finally block is used?
+- Executes cleanup code.
+- Releases resources.
+- Executes even if exception occurs.
+
+===============================
+MODULE 4: COLLECTIONS (20 Q&A)
+===============================
+
+1. What is Collection Framework?
+- Set of classes and interfaces.
+- Used to store objects.
+- Part of java.util package.
+
+2. Why use collections?
+- Dynamic size.
+- Ready-made data structures.
+- Improves performance.
+
+3. Array vs Collection?
+- Array is fixed size.
+- Collection is dynamic.
+- Collections provide utility methods.
+
+4. What is List?
+- Allows duplicate elements.
+- Maintains insertion order.
+- Indexed access.
+
+5. List examples?
+- ArrayList
+- LinkedList
+- Vector
+
+6. What is Set?
+- Does not allow duplicates.
+- No index-based access.
+- Unique elements.
+
+7. Set examples?
+- HashSet
+- LinkedHashSet
+- TreeSet
+
+8. What is Map?
+- Stores key-value pairs.
+- Keys must be unique.
+- Values can be duplicated.
+
+9. Map examples?
+- HashMap
+- LinkedHashMap
+- TreeMap
+
+10. ArrayList vs LinkedList?
+- ArrayList faster for access.
+- LinkedList faster for insert/delete.
+- Memory structure differs.
+
+11. HashSet vs TreeSet?
+- HashSet unordered.
+- TreeSet sorted.
+- TreeSet slower than HashSet.
+
+12. HashMap vs Hashtable?
+- HashMap is non-synchronized.
+- Hashtable is synchronized.
+- HashMap allows null.
+
+13. Null in HashMap?
+- One null key allowed.
+- Multiple null values allowed.
+- Not allowed in Hashtable.
+
+14. What is Iterator?
+- Used to traverse collection.
+- Supports forward traversal.
+- Universal iterator.
+
+15. Iterator vs ListIterator?
+- Iterator supports forward only.
+- ListIterator supports both directions.
+- ListIterator works with List only.
+
+16. What is Comparable?
+- Used for natural sorting.
+- compareTo() method.
+- Implemented by class.
+
+17. What is Comparator?
+- Used for custom sorting.
+- compare() method.
+- Separate class.
+
+18. What is Collections class?
+- Utility class.
+- Provides sort, search, reverse.
+- Part of java.util.
+
+19. What is fail-fast?
+- Throws ConcurrentModificationException.
+- Iterator checks modification.
+- Example: ArrayList.
+
+20. What is fail-safe?
+- Does not throw exception.
+- Works on cloned copy.
+- Example: CopyOnWriteArrayList.
+
+21. Why collections are preferred over arrays?
+- Dynamic size.
+- Built-in methods.
+- Better performance handling.
+
+22. Scenario: You want unique elements and no order. Which collection will you use?
+- HashSet.
+- Does not allow duplicates.
+- Unordered collection.
+
+23. Scenario: You want sorted data automatically. Which collection will you choose?
+- TreeSet or TreeMap.
+- Maintains sorted order.
+- Uses natural/custom sorting.
+
+24. Why HashMap is faster than Hashtable?
+- HashMap is non-synchronized.
+- No thread locking overhead.
+- Better performance.
+
+25. Scenario: Multiple threads accessing collection safely. What will you use?
+- Synchronized collections.
+- ConcurrentHashMap.
+- Thread-safe alternatives.
+
+===============================================================
