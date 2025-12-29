@@ -1,0 +1,235 @@
+```
+SOAP WEB SERVICES – 
+==============================================================
+
+1. WHAT IS SOAP
+---------------
+SOAP stands for Simple Object Access Protocol.
+SOAP is a messaging protocol used for communication between applications.
+SOAP uses XML for request and response.
+SOAP follows strict rules and standards.
+SOAP is platform and language independent.
+SOAP is widely used in enterprise and banking systems.
+
+---
+
+2. REST VS SOAP 
+-------------------------------
+REST:
+- Uses HTTP
+- Uses JSON or XML
+- Flexible structure
+
+SOAP:
+- Uses XML only
+- Fixed message structure
+- Uses a contract called WSDL
+
+Conceptually both work as:
+Client sends request → Server sends response
+
+---
+
+3. SOAP MESSAGE STRUCTURE
+------------------------
+Every SOAP message contains:
+
+1. Envelope (Mandatory)
+2. Header (Optional)
+3. Body (Mandatory)
+
+Structure:
+Envelope
+ ├── Header
+ └── Body
+
+---
+
+4. SOAP ENVELOPE
+----------------
+The Envelope is the root element of a SOAP message.
+It identifies the XML as a SOAP message.
+Without Envelope, the SOAP message is invalid.
+
+Example:
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+</soap:Envelope>
+
+---
+
+5. SOAP HEADER
+--------------
+The Header contains metadata information.
+Used for:
+- Authentication
+- Security
+- Transaction details
+- Session information
+
+Header is optional.
+
+Example:
+<soap:Header>
+    <auth>
+        <token>ABC123</token>
+    </auth>
+</soap:Header>
+
+---
+
+6. SOAP BODY
+------------
+The Body contains the actual request or response data.
+This is the main part processed by the server.
+Body is mandatory.
+
+Example:
+<soap:Body>
+    <add>
+        <a>10</a>
+        <b>20</b>
+    </add>
+</soap:Body>
+
+---
+
+7. COMPLETE SOAP REQUEST EXAMPLE
+--------------------------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:cal="http://calculation.example.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cal:add>
+         <a>5</a>
+         <b>3</b>
+      </cal:add>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+---
+
+8. SOAP RESPONSE EXAMPLE
+------------------------
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <addResponse>
+         <result>8</result>
+      </addResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+---
+
+9. SOAP FAULT
+-------------
+SOAP Fault is used to send error information.
+Returned when an error occurs during processing.
+
+Example:
+<soap:Fault>
+    <faultcode>soap:Client</faultcode>
+    <faultstring>Invalid Input</faultstring>
+</soap:Fault>
+
+---
+
+10. WSDL (WEB SERVICES DESCRIPTION LANGUAGE)
+-------------------------------------------
+WSDL is an XML document.
+It describes:
+- Service name
+- Operations
+- Input and output types
+- Endpoint URL
+
+WSDL acts as a contract between client and server.
+
+Example:
+http://localhost:8080/service?wsdl
+
+---
+
+11. SOAP OPERATION
+------------------
+An operation is a method exposed by the SOAP service.
+
+Examples:
+- add
+- subtract
+- transferFunds
+
+Operation example:
+<add>
+    <a>5</a>
+    <b>3</b>
+</add>
+
+---
+
+12. SOAP WORKING FLOW
+---------------------
+1. Service exposes WSDL
+2. Client reads WSDL
+3. Client prepares SOAP XML request
+4. Request is sent to endpoint
+5. Server processes SOAP Body
+6. Server returns SOAP response
+
+---
+
+13. TRANSPORT PROTOCOLS SUPPORTED BY SOAP
+-----------------------------------------
+SOAP can use:
+- HTTP
+- HTTPS
+- SMTP
+- TCP
+- JMS
+
+REST uses HTTP only.
+
+---
+
+14. SOAP TESTING USING SOAP UI
+------------------------------
+1. Import WSDL into SOAP UI
+2. SOAP UI generates request XML
+3. Modify values inside Body
+4. Send request to endpoint
+5. View response or fault
+
+---
+
+15. WHERE SOAP AND REST ARE USED IN BANKING
+------------------------------------------
+SOAP is used in banking for:
+- Core banking systems
+- Fund transfer systems
+- Payment processing
+- Inter-bank communication
+- High security internal systems
+
+REST is used in banking for:
+- Mobile banking apps
+- Internet banking websites
+- Customer dashboards
+- Banking APIs for apps
+- Microservices inside banking systems
+
+16. KEY POINTS SUMMARY
+---------------------
+- SOAP uses XML only
+- Envelope is the root element
+- Header is optional
+- Body contains business logic
+- Fault handles errors
+- WSDL defines the contract
+- SOAP supports multiple protocols
+- SOAP is preferred in banking core systems
+```
+
+Reference Link:-
+--------------------
+https://www.youtube.com/watch?v=ceSqN3CWd14&t=1704s
+
+=============================================================
