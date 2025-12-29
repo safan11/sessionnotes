@@ -4,7 +4,7 @@ CORE JAVA – INTERVIEW QUESTIONS & ANSWERS
 
 
 ====================================
-MODULE 1: JAVA FUNDAMENTALS (20 Q&A)
+MODULE 1: JAVA FUNDAMENTALS 
 ====================================
 
 1. What is Java?
@@ -134,7 +134,7 @@ MODULE 1: JAVA FUNDAMENTALS (20 Q&A)
 
 
 =========================
-MODULE 2: OOPS (20 Q&A)
+MODULE 2: OOPS 
 =========================
 
 1. What is OOPS?
@@ -266,7 +266,7 @@ MODULE 2: OOPS (20 Q&A)
 
 
 =====================================
-MODULE 3: EXCEPTION HANDLING (20 Q&A)
+MODULE 3: EXCEPTION HANDLING 
 =====================================
 
 1. What is exception?
@@ -395,7 +395,7 @@ MODULE 3: EXCEPTION HANDLING (20 Q&A)
 - Executes even if exception occurs.
 
 ===============================
-MODULE 4: COLLECTIONS (20 Q&A)
+MODULE 4: COLLECTIONS
 ===============================
 
 1. What is Collection Framework?
